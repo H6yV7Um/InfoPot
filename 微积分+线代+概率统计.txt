@@ -1,0 +1,91 @@
+
+
+http://www.clipconverter.cc/
+
+https://www.youtube.com/playlist?list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+
+作者：Boom
+链接：https://www.zhihu.com/question/32044961/answer/73776978
+
+顺便看了下微积分、线代和概统的：（ Princeton 普林斯顿大学 ）（ UCLA 加州大学洛杉矶分校 ）（ UCB 加州大学伯克利分校 ）
+
+Differential & Integral Calculus | UCLA ：
+playlist?list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+Multivariable Calculus | UC Berkeley ：
+playlist?list=PLiDh_aMfNpJyLtgPsMQUbzsTgrYHWsw2b
+Calculus III: Multivariable Calculus | Princeton ：
+playlist?list=PLiDh_aMfNpJy7oapc2UGzEStgLOs1WmsA
+Linear Algebra | Princeton University ：
+playlist?list=PLiDh_aMfNpJwSR8GtEXNaXahmNS8G9yXs
+Probability for Life Science | UCLA ：
+playlist?list=PLF4631DC2DF29E840UCIrvineOCW（ 加州大学尔湾分校。微积分1[ 预备课 ]、微积分2A,2B、概统131A,131B ）：
+user/UCIrvineOCW/playlists ，可以在官网看：http://ocw.uci.eduProfessor Leonard（ 不知道学校。微积分1,2、统计、初等代数[ Prealgebra ]、中级代数[ Intermediate Algebra ] ）：user/professorleonard57/playlists
+
+
+AcePlayer
+http://10.38.114.25
+
+快照：
+https://webcache.googleusercontent.com/search?q=cache:JQofXPI4roQJ:https://www.youtube.com/playlist%3Flist%3DPLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg+&cd=1&hl=zh-CN&ct=clnk&gl=cn
+
+视频（25lectures）：
+https://www.youtube.com/watch?v=YoVgNE4lKSk&index=1&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=gMIkI4aVp-0&index=2&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=Gd_4A6jXsoU&index=3&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=VmN_0yPI70M&index=4&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=c1PGARCMdTw&index=5&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=OO2BT7v_bWI&index=6&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+
+wolfram mathematica
+
+
+Lecture 01
+----------
+Differential calculus 微分
+How fast is sth. changing?
+
+integral calculus 积分
+How much is the total?
+
+Fundamental Theory of Calculus
+
+The idea behind calculus
+We understand flat ghings really well...
+But many things are not flat..
+so we approximate things that are not flat by things that are flat!
+
+line: y = mx + b
+m:slope of the line = rise/run = (y2-y1)/(x2-x1) = rate of change in 
+b:y-intercept
+
+y-rise
+x-run
+
+"change in"
+
+tangent line  "touch"
+secant line
+
+impossible
+ambiguous
+
+
+Limits tell us what [should] happen!! 
+based on what is happening nearby.
+
+Lecture02
+---------
+instantaneous R.O.C(Rate of Change)
+
+as x gets "close" to c
+then g(x) gets "close" to L
+for all delta>0 there is a delta2>0
+so that 0<|x-c|<delta2, then |g(x)-L|<delta (the difference is small)
+
+distance
+
+
+Limits tell us what [should] happen 
+based on what is happeing [nearby].
+
+

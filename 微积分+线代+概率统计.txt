@@ -1,6 +1,6 @@
 
 
-http://www.clipconverter.cc/
+
 
 https://www.youtube.com/playlist?list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
 
@@ -28,6 +28,8 @@ http://10.38.114.25
 快照：
 https://webcache.googleusercontent.com/search?q=cache:JQofXPI4roQJ:https://www.youtube.com/playlist%3Flist%3DPLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg+&cd=1&hl=zh-CN&ct=clnk&gl=cn
 
+http://www.clipconverter.cc/
+
 视频（25lectures）：
 https://www.youtube.com/watch?v=YoVgNE4lKSk&index=1&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
 https://www.youtube.com/watch?v=gMIkI4aVp-0&index=2&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
@@ -35,12 +37,27 @@ https://www.youtube.com/watch?v=Gd_4A6jXsoU&index=3&list=PLiDh_aMfNpJw-ddGq47zuY
 https://www.youtube.com/watch?v=VmN_0yPI70M&index=4&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
 https://www.youtube.com/watch?v=c1PGARCMdTw&index=5&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
 https://www.youtube.com/watch?v=OO2BT7v_bWI&index=6&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=MyU0CD8pPwg&index=7&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=gDLg4muB6dk&index=8&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=BrjuHz2lPss&index=9&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=TVBsSEocG9U&index=10&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=XnOPvKZ2opc&index=11&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=Sy9i08nqEIQ&index=12&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=wxF53oYyG4o&index=13&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
 
 wolfram mathematica
+--------------------
+shift+enter 输出
+
+增加GridLines命令可以使图像增加网格，
+Plot[Sin[(2*Pi)/3*t], {t, 0, 3}, GridLines -> Automatic]
 
 
-Lecture 01
-----------
+
+
+┏━━━━━┓
+┃Lecture01 ┃
+┗━━━━━┛
 Differential calculus 微分
 How fast is sth. changing?
 
@@ -73,8 +90,9 @@ ambiguous
 Limits tell us what [should] happen!! 
 based on what is happening nearby.
 
-Lecture02
----------
+┏━━━━━┓
+┃Lecture02 ┃
+┗━━━━━┛
 instantaneous R.O.C(Rate of Change)
 
 as x gets "close" to c
@@ -88,4 +106,273 @@ distance
 Limits tell us what [should] happen 
 based on what is happeing [nearby].
 
+axis
+
+----------------------------------------------------------------------------
+极限不存在：
+1.
+limSin(1/x)=D.N.E 
+x->0
+do not exit
+1/pi 1/npi
+
+2/pi (4n+1)/pi
+
+2.
+lim|x|/x = D.N.E
+x->0
+one side limit
+左极限 become from the left
+右极限 存在
+
+limit tell us should happen
+g(1)=3 tell us does happen
+
+
+----------------------------------------------------------------------------
+infinite limit:
+1.
+Plot[1/x^2, {x, -1, 1}] = infinite (not a number) it grows and become unbounded
+x->0
+infinite+1 = infinite
+2*infinite = infinite
+infinite-infinite = undefined
+
+----------------------------------------------------------------------------
+constant K
+1
+limK = K
+x->0
+
+2
+lim x = c
+x->c
+
+----------------------------------------------------------------------------
+suppose
+lim f(x)=L(不等于infinite)
+x->c
+lim g(x)=M(不等于infinite)
+x->c
+加 f(x)+g(x)
+常数乘 K*f(x)
+乘 f(x)*g(x)
+除  M不等于0 f(x)/g(x)
+
+
+
+----------------------------------------------------------------------------
+if f(x) is a polynomial 
+f(x) = anX^n + an-1X^n-1 + .. + a1X + a1
+lim f(x) = f(c)
+x->c
+e.g. 3x^2+2x
+
+
+
+
+┏━━━━━┓
+┃Lecture03 ┃
+┗━━━━━┛
+Mathematica的内部常数
+https://www.zybang.com/question/17588afe7f5971c9bde961da3d8fb2ea.html
+----------------------------------------------------------------------------
+continuous = "No breaks"
+"draw it without lifting the pencil"
+
+discontinuous
+A function f(x) is continuous at x = c
+if the limf(x) = f(c)
+x->c  should happen = what we get
+1. the limit has to exist -> jump discontinuity
+2. f(c) is exist          -> removal discontinuity 
+3. equal                  -> removal discontinuity 
+infinite discontinuity
+
+----------------------------------------------------------------------------
+
+continuous functions:
+polynomial
+sine
+cosine
+tangent
+e^x  e = 2.718281828459  Plot[E^x]
+lnx (x>0)  Plot[Log[x]] 
+	Log[x]自然对数，即以e为底数的对数  
+	Log[a，x] 以a为底数的x的对数
+arctan
+x^alfa  ??
+
+----------------------------------------------------------------------------
+f(x) g(x)在c点连续，
+So the following are also continous
+f(x)+g(x)
+kf(x)
+f(x)*g(x)
+if g(c)不等于0, f(x)/g(x)
+
+
+----------------------------------------------------------------------------
+(f*g)(x) = f(g(x)) -> first do g, then do f
+f of g of x
+
+if g(x) is continous at x=c
+and f(x) is continous at x=g(c)
+then f(g(x)) is continous at x=c
+
+
+----------------------------------------------------------------------------
+Algebraic manipulation of limits
+0/0
+goal: "cancel the 0s"
+
+three tricks:
+1 rewrite (expand/factor) (+0)
+2 multiply top/bottom by conjugate (*1) a+b conjugate:a-b
+3 use identities(trigonometry)
+
+
+┏━━━━━┓
+┃Lecture04 ┃
+┗━━━━━┛
+导数的定义：
+f'(a) = lim [f(a+h)-f(a)]/h    limit of slopes of second lines
+		h->0
+	  = lim [f(a)-f(b)]/[a-b]
+	  	b->a
+
+导数是在求斜率的极限值，是求极限的一个特例
+----------------------------------------------------------------------------
+截图 Question
+
+
+----------------------------------------------------------------------------
+dy/dx = d/dx(y) = f'(x) = lim (2x+h+1) = 2x+1
+		h->0
+Leibniz
+x指任意数，所以任意一点的斜率集合是一个函数
+
+d/dx(x^2) = lim [(x+h)^2-x^2]/h
+			h->0
+----------------------------------------------------------------------------
+
+1
+d/dx(x^a) = ax^(a-1)
+
+以下是证明：
+(x+y)^3 = x^3+3*x^2*y+3*x*y^2+y^3			
+
+						1
+					1		1
+				1		2		1
+			1		3		3		1
+		1		4		6		4		1
+	1		5		10		10		5		1
+
+z "small"
+(1+z)^a  = 1 + az + a(a-1)/2*z^2 + ... + [a(a-1)...(a-(k-1))]/[k(k-1)...1]
+Newton Binomial Theorem
+
+(x+h)^a =x^a + hax^(a-1) + h2[other things]
+d/dx(x^a) = lim(a*x^(a-1) + h[other things]) = ax^(a-1)
+		 h->0
+
+----------------------------------------------------------------------------
+
+2
+d/dx(f(x)+g(x)) = f'(x) + g'(x) = d/dy(f(x)) + d/dx(g(x))
+
+3
+d/dx(Kf(x)) = Kd/dx(f(x))
+
+----------------------------------------------------------------------------
+Derivation dont' always exit.
+
+f(x) = |x|
+
+ f'(x) =  D.N.E   if x=0
+
+
+Brownian motion
+
+----------------------------------------------------------------------------
+If a function is discontinuous at x = a
+then it does not have a derivative at x = a
+
+----------------------------------------------------------------------------
+d/dx(f(x)*g(x)) 不等于 d/dx(f(x)) * d/dx(g(x))
+-f(x)g(x+h)+f(x)g(x+h)
+
+d/dx(f(x)*g(x))  = f'(x) * g(x) + f(x) * g'(x) = d/dx(f(x))*g(x) + f(x)*d/dx(g(x))
+
+
+
+
+
+┏━━━━━┓
+┃Lecture05 ┃
+┗━━━━━┛
+d/dx(1) = 0
+d/dx(x) = 1
+d/dx(x^2) = 2x
+d/dx(x^a) = ax^(a-1)
+
+
+d/dx(f(x)+g(x)) = d/dx(f(x)) = d/dx(g(x))
+d/dx(Kf(x)) = k d/dx(f(x))
+Product rule:
+	d/dx(f(x)g(x)) = d/dx(f(x))*g(x) + f(x)*d/dx(g(x))  
+	(fg)' = f'g + fg'
+	(uv)' = du*v + u*dv
+
+Quotion rule(Division rule):
+	d/dx(f(x)/g(x)) = [d/dx(f(x))*g(x) - f(x)*d/dx(f(x))] / (g(x))^2
+	(f'g-fg')/g^2
+
+
+----------------------------------------------------------------------------
+composition functions
+d/dx(f(g(x)))
+
+----------------------------------------------------------------------------
+f'(x) = lim[f(x+h)-f(x)]/h 约等于 [f(x+h)-f(x)]/h (h is small)
+		h->0
+f(x+h) -f(x) 约等于  f'(x)*h
+
+Economics marginal cost - cost to produce one unit
+C(x) = cost function
+
+marginal Cost @x C(x+1) -C(x) 约等于 C'(x)
+
+Example:
+widget producer
+C(x) = cost of producing x widget
+	 = 1/100 *x^2 - 1/2 x + 30
+Marginal cost of producing your 101 widget
+C(101)-C(100) - cost of the last widget
+=81.51-80.00=1.51
+=C'(100)=1/50*x-1/2 = 1/50*100-1/2 = 1.50
+
+
+----------------------------------------------------------------------------
+d/dx(f'(x)) = f''(x)  derivative of the derivative / second derivative
+d/dx(d/dx(f(x))
+d^2/dx^2(f(x))
+
+f''(x) - tell us how the slopes are changing
+凹 f''(x)>0 斜率在不断增大 positive 笑脸
+凸 f''(x)<0				   negative 难过的脸
+we don't know what's going on f''(x)=0
+
+----------------------------------------------------------------------------
+f'''(x) = d/dx(f''(x)) third derivative
+f^(4)(x) = d/dx(f'''(x))
+d^n/dx^n = f^(n)(x)
+
+
+----------------------------------------------------------------------------
+s(t) = position
+v(t) = velocity = d/dt(s(t))
+a(t) = acceleration = d/dt(v(t))
+					= d^2/dt^2(s(t))  m/sec^2
 

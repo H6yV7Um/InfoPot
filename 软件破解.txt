@@ -15,3 +15,9 @@ ps64位补丁
 6.断网。
 7.把下载下来的补丁直接替换两个文件夹里面对应的"amtlib.dll"文件。(两个都要替换)
 8.再联网就搞定了。
+
+
+
+Wolfram Mathematic
+===================
+Mathematica激活指南 https://tiebamma.github.io/InstallTutorial/

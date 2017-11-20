@@ -44,6 +44,18 @@ https://www.youtube.com/watch?v=TVBsSEocG9U&index=10&list=PLiDh_aMfNpJw-ddGq47zu
 https://www.youtube.com/watch?v=XnOPvKZ2opc&index=11&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
 https://www.youtube.com/watch?v=Sy9i08nqEIQ&index=12&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
 https://www.youtube.com/watch?v=wxF53oYyG4o&index=13&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=ct83Jyd0zJk&index=14&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=Ehd2hwWUd48&index=15&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=Ku6xqEvgnIk&index=16&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=AbxD5_P9jGY&index=17&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=cLjgn6NNKhk&index=18&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=fPmh1glF1E4&index=19&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=5N1zkD2B6so&index=20&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=tN2b6supMH4&index=21&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=hWgpbmbjYSs&index=22&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=lKtTYI1ftlg&index=23&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=pYTMV_f4UdY&index=24&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
+https://www.youtube.com/watch?v=89UxL2ka5F0&index=25&list=PLiDh_aMfNpJw-ddGq47zuYsEg795c9kBg
 
 wolfram mathematica
 --------------------
@@ -303,7 +315,7 @@ then it does not have a derivative at x = a
 d/dx(f(x)*g(x)) 不等于 d/dx(f(x)) * d/dx(g(x))
 -f(x)g(x+h)+f(x)g(x+h)
 
-d/dx(f(x)*g(x))  = f'(x) * g(x) + f(x) * g'(x) = d/dx(f(x))*g(x) + f(x)*d/dx(g(x))
+*** d/dx(f(x)*g(x))  = f'(x) * g(x) + f(x) * g'(x) = d/dx(f(x))*g(x) + f(x)*d/dx(g(x))
 
 
 
@@ -312,27 +324,34 @@ d/dx(f(x)*g(x))  = f'(x) * g(x) + f(x) * g'(x) = d/dx(f(x))*g(x) + f(x)*d/dx(g(x
 ┏━━━━━┓
 ┃Lecture05 ┃
 ┗━━━━━┛
-d/dx(1) = 0
-d/dx(x) = 1
-d/dx(x^2) = 2x
-d/dx(x^a) = ax^(a-1)
-
-
-d/dx(f(x)+g(x)) = d/dx(f(x)) = d/dx(g(x))
-d/dx(Kf(x)) = k d/dx(f(x))
-Product rule:
-	d/dx(f(x)g(x)) = d/dx(f(x))*g(x) + f(x)*d/dx(g(x))  
-	(fg)' = f'g + fg'
-	(uv)' = du*v + u*dv
-
-Quotion rule(Division rule):
-	d/dx(f(x)/g(x)) = [d/dx(f(x))*g(x) - f(x)*d/dx(f(x))] / (g(x))^2
-	(f'g-fg')/g^2
-
+┌───────────────────────────────────────
+│ d/dx(1) = 0
+│ d/dx(x) = 1
+│ d/dx(x^2) = 2x
+│ d/dx(x^a) = ax^(a-1)
+└───────────────────────────────────────
+┌───────────────────────────────────────
+│ Addition rule: 
+│   d/dx(f(x)+g(x)) = d/dx(f(x)) = d/dx(g(x))
+│ 
+│ 
+│ Scaling rule:
+│   d/dx(Kf(x)) = k d/dx(f(x))
+│ 
+│ *** Product rule:
+│ 	d/dx(f(x)g(x)) = d/dx(f(x))*g(x) + f(x)*d/dx(g(x))  
+│ 	(fg)' = f'g + fg'
+│ 	(uv)' = du*v + u*dv
+│
+│ Quotient  rule(Division rule):
+│ 	d/dx(f(x)/g(x)) = [d/dx(f(x))*g(x) - f(x)*d/dx(f(x))] / (g(x))^2
+│	(f'g-fg')/g^2
+│ 	
+└───────────────────────────────────────
 
 ----------------------------------------------------------------------------
 composition functions
-d/dx(f(g(x)))
+** d/dx(f(g(x))) =  f'(g(x)) * g'(x)
 
 ----------------------------------------------------------------------------
 f'(x) = lim[f(x+h)-f(x)]/h 约等于 [f(x+h)-f(x)]/h (h is small)
@@ -376,3 +395,283 @@ v(t) = velocity = d/dt(s(t))
 a(t) = acceleration = d/dt(v(t))
 					= d^2/dt^2(s(t))  m/sec^2
 
+
+
+
+┏━━━━━┓
+┃Lecture06 ┃
+┗━━━━━┛
+lim sinh/h = 1
+h->0
+h in radians
+
+Galileo
+a(t) = -g
+	g= gravity
+v(t) = v0 - gt
+	initial velocity
+s(t) = s0 + v0t -1/2gt^2
+	initial position
+
+smax = 16 T = v0/g
+
+
+----------------------------------------------------------------------------
+trigonometric functions
+d/dx(sinx) = lim[sin(x+h) - sinx]/h
+			h->0
+
+			= lim[sinx*cosh+cosx*sinh-sinx]/h 
+			= lim[sinx(cosh-1)/h+(cosx*sinh)/h]
+			= sinx*0 + cosx*1
+			= cosx
+			cosx = 0? constant cosx is not changing, it's just a value.
+
+			lim[(cosh-1)/h] = lim[(cosh^2-1)/(cosh+1)h]
+							= lim[-sinh/h * sinh/(cosh+1)]
+							= -1 * (0/0?+1)
+							= 0
+			three tricks: 2  multiply top/bottom by conjugate (*1) a+b conjugate:a-b
+
+sin(A+B) = sinAcosB + cosAsinB
+cos(A+B) = cosAcosB - sinAsinB
+cosx^2 - 1= sinx^2
+
+
+┌───────────────────────────────────────
+│ ** d/dx(sinx) = cosx
+│ ** d/dx(cosx) = -sinx
+└───────────────────────────────────────
+
+
+----------------------------------------------------------------------------
+d/dx(tanx) = d/dx(sinx/cosx)
+		   = [d/dx(sinx)*cosx - sinx*d/dx(cosx)]/cosx^2
+		   = [cosx*cosx - sinx(-sinx)]/(cosx^2)
+		   = 1/cosx^2
+		   = secx^2
+
+
+d/dx(secx) = d/dx(1/cosx) 
+		   = [0*cosx - 1*(-sinx)]/cosx^2
+		   = sinx/cosx^2
+		   = secx* tanx
+
+┌───────────────────────────────────────
+│ ** d/dx(tanx) = secx^2		
+│ 
+│ ** d/dx(secx) = secx* tanx
+│ 
+│ ** d/dx(cotx) = d/dx(1/tanx) = -cscx^2
+│               
+│ ** d/dx(cscx) = -cscx*cotx 
+└───────────────────────────────────────
+
+
+
+----------------------------------------------------------------------------
+Find tangent line at seta=pi/4 to y=seta*sin(seta)
+point(pi/4, pi*2^(1/2)/8)
+slope = y'(pi/4) = 
+	y' = 1*sinseta + seta*cosseta
+
+tangent line: y = f(a) + f'(a)*(x-a)
+				= pi2^(1/2)/8+(2^(1/2)/2 + pi*2^(1/2)/8)*(x-pi/4))
+
+
+┏━━━━━┓
+┃Lecture07 ┃
+┗━━━━━┛
+f'(a) = lim[f(a+h)-f(a)]/h
+		h->0
+	  = lim[f(b) - f(a)]/(b-a)
+	  	b->a
+
+
+----------------------------------------------------------------------------
+┌───────────────────────────────────────
+│ 
+│ Chain rule:
+│ d/dx(f(g(x))) = lim [f(g(x+h))-f(g(x))]/h  definition
+│ 				h->0
+│ 			  = lim [f(g(x+h))-f(g(x))]/[g(x+h)-g(x)] * [g(x+h)-g(x)]/h
+│ 			  	h->0
+│ 			     										this goes to g'(x)
+│ 			        g(x+h) = b
+│ 			        g(x) = a
+│ 			    lim[f(b)-f(a)]/(b-a)
+│ 			    b->a
+│ 			  = f'(g(x)) * g'(x)
+└───────────────────────────────────────
+
+
+
+----------------------------------------------------------------------------
+Function in a function <--- chain rule
+
+d/dx((x^2+cosx)^1/2) = f'(g(x)) * g'(x) = f'(x^2+cosx) * g'(x) = 1/2(x^2+cosx)^(-1/2)*(2x-sinx)
+f(x) = x^1/2
+g(x) = x^2 + cosx
+
+f'(x) = 1/2x^(-1/2)
+g'(x) = 2x -sinx
+
+----------------------------------------------------------------------------
+d/dx[sin(x^2))+(sinx)^2] = cos(x^2)*2x+2sinx*cosx
+----------------------------------------------------------------------------
+d/dx(sin(x*cosx)) = cos(x*cosx)*[cosx-x*sinx]
+----------------------------------------------------------------------------
+┌───────────────────────────────────────
+│ Power rule:
+│ d/dx((g(x))^n) = ng(x)^(n-1)*g'(x)
+└───────────────────────────────────────
+d/dx((g(x))^(-1)) = -1*g(x)^(-2)*g'(x) = -g'(x)/[(g(x))^2]
+
+----------------------------------------------------------------------------
+d/dx(f(x)/g(x)) = d/dx[f(x)*(1/g(x))]
+				= f'(x)*(1/g(x)) + f(x)*[-g'(x)/(g(x))^2]
+				= [f'(x)g(x)-f(x)g'(x)]/[(g(x))^2]
+
+
+----------------------------------------------------------------------------
+d/dx(f(ax+b)) = f'(ax+b)*a
+
+----------------------------------------------------------------------------
+y = stuff of x  --- "Explicit representation"
+
+y^3 + xy + 3x^4 = 5 --- "Implicit representation"
+
+
+find dy/dx|(1,1)   Evaluate at this point 
+
+http://www.wolframalpha.com/
+
+Implicit representation:
+(1) Take the derivative of both sides
+ f(x) = g(x)  =>  f'(x) = g'(x)
+(still equalities)
+when we take derivative of y write either dy/dx or y'
+(2) Slove for dy/dx(or y')
+Put dy/dx terms on one side 
+other terms on other side 
+factor out dy/dx ? divider
+
+
+
+3(y)^2*dy/dx + y+x*dy/dx + 12x^3 = 0
+3y^2*dy/dx + dy/dx = -y-12x^3
+(3y^2+x)dy/dx = -y-12x^3
+dy/dx = (-y-12x^3)/(3y^2+x)
+      = (-1-12)/(3+1)
+      = -13/4
+
+
+----------------------------------------------------------------------------
+y = arctanx  then x = ? tany
+  = tanx^-1
+
+  tan(arctan x ) = x
+
+1 = secy^2*dy/dx
+dy/dx = 1/secy^2 = 1/(tany^2 + 1) = 1/(x^2 + 1)
+
+
+┌───────────────────────────────────────
+│ ** d/dx(arctan x) = 1/(x^2+1)		
+└───────────────────────────────────────
+
+
+
+
+┏━━━━━┓
+┃Lecture08 ┃
+┗━━━━━┛
+f(x) = sin(2x)
+f'(x) = 2*cos(2x)
+f''(x) = 2*(-sin(2x)*2) = 2^2*(-sin(2x))
+f'''(x) = 2^3*(-cos(2x))
+f^(4)(x) = 2^4*sin(2x)
+.
+.
+.
+f^101(0) = ?
+f^(101)(x) = 2^101 *[cos](2x)
+101 = 4+4+4+ ...25times... +4+1
+f^(101)(0) = 2^101*1 = 2^101
+----------------------------------------------------------------------------
+y+cosy = x+sinx+1  Implicit
+
+slope of tangent line @ (0,0)
+
+dy/dx-siny*dy/dx = 1 +cosx+0
+dy/dx(1-siny) = 1+cosx
+dy/dx = (1+cosx)/(1-siny)
+dy/dx|(0,0) = 2
+
+----------------------------------------------------------------------------
+Related Rates -- derivative
+
+Goal: Given some rate(s) find another rate.
+Idea: If there is a relationship between variable then  there is also relationship between their rates.
+
+Plan: 
+(1) Find a relationship between the variables
+(2) Take a derivative w.r.t (with respect to) "time"
+(3) Plug in what we know solve for what we don't know
+
+10 feet ladders
+6ft
+sliding away from the wall at 2ft/min
+Q:How fast is it moving down the wall?
+
+x
+y
+
+Pythagoras Theorem:
+x^2 + y^2 = 10^2
+
+dx/dt = 2(ft/min)
+y^2=10^2-6^2 = 6^4 
+y=8
+find dy/dt = ?
+
+2(x)'dx/dt + 2(y)'dy/dt = 0
+
+2*6*2 + 2*8dy/dt=0
+dy/dt=-2^4/16 = -3/2(ft/min)
+
+----------------------------------------------------------------------------
+
+10km
+seta = pi/3
+at this angle is changing at rate of 0.2 radian/sec
+Q: How fast is the rock going?
+
+find dy/dt
+tan seta = y/10  ---relationship
+sec seta^2 * d seta/dt = 1/10*dy/dt
+2^2 * 0.2 = 1/20*dy/dt
+dy/dt = 8(km/min)
+
+seta      0      pi/6        pi/4        pi/3
+cos seta  1  3^(1/2)/2     2^(1/2)/2     1/2
+
+----------------------------------------------------------------------------
+paper cup
+dimension
+3in
+4in
+water  :height of 2in
+height of water is driopping at 1/e (in/min)
+Q: flow fast is the volumn of the water in the cup?
+
+cone
+Volumn = 1/3 pi r^2 *h = 1/3*Pi*
+
+r/h = 3/2 /4 = 3/8
+r = 3/8*h
+
+
+┏━━━━━┓
+┃Lecture09 ┃
+┗━━━━━┛

@@ -298,9 +298,12 @@ d/dx(f(x)+g(x)) = f'(x) + g'(x) = d/dy(f(x)) + d/dx(g(x))
 d/dx(Kf(x)) = Kd/dx(f(x))
 
 ----------------------------------------------------------------------------
-Derivation dont' always exit.
+Derivation don't always exit.
 
 f(x) = |x|
+f'(x) = lim [f(x)-f(0)]/[x-0] = lim f(x)/x = lim |x|/x
+		x->0					x->0		 x->0
+ |x|/x在x=0处极限不存在
 
  f'(x) =  D.N.E   if x=0
 
@@ -501,7 +504,7 @@ f'(a) = lim[f(a+h)-f(a)]/h
 │ 			        g(x) = a
 │ 			    lim[f(b)-f(a)]/(b-a)
 │ 			    b->a
-│ 			  = f'(g(x)) * g'(x)
+│ 			  = f'(g(x)) * g'(x)  let the g(x) untouched
 └───────────────────────────────────────
 
 
@@ -615,9 +618,9 @@ Goal: Given some rate(s) find another rate.
 Idea: If there is a relationship between variable then  there is also relationship between their rates.
 
 Plan: 
-(1) Find a relationship between the variables
-(2) Take a derivative w.r.t (with respect to) "time"
-(3) Plug in what we know solve for what we don't know
+(1) SET UP RELATIONSHIP: Find a relationship between the variables
+(2) TAKE DERIVATIVE: Take a derivative w.r.t (with respect to) "time"
+(3) SOLVE FOR THE DESIRED RATE: Plug in what we know solve for what we don't know
 
 10 feet ladders
 6ft
@@ -699,7 +702,7 @@ Chapter 3 : Derivatives - What's Derivatives? How to find Drivatives? Limit
 ----------------------------------------------------------------------------
 Chapter 4 : Linear Approximation
 
-Tangent line is good
+** TANGENT LINES ARE GOOD APPROXIMATIONS TO THE FUNCTION [NEAR] THE POINT OF TANGENTCY
 
 a
 delta x : small change
@@ -735,3 +738,267 @@ delta A 约等于 Pi/2 * D*delta D
 ┏━━━━━┓
 ┃Lecture10 ┃
 ┗━━━━━┛
+Local linearization = Tangent line for f(a) @x=a
+L(x) = f(a)+f'(a)(x-a) 约等于 f(x) for x near a
+
+----------------------------------------------------------------------------
+
+26^(1/2)
+f(x)=x^(1/2)
+a=25
+
+L(x) = 25^(1/2) + 1/[2*25^(1/2)] (x-25)
+L(26) = 5 + 1/10(26-25) = 5.1 约等于 26^(1/2)
+
+Taylor binomial
+----------------------------------------------------------------------------
+small f''  smooth
+large f''  sharp
+
+----------------------------------------------------------------------------
+Find linearization of y=arctany at x = 1
+						f(x)  	   a=1
+L(x) = f(a) + f'(a)(x-a)
+	 = arctan(1) + 1/(1+1^2)(x-1)
+	 = Pi/4 + 1/2*(x-1)
+
+----------------------------------------------------------------------------
+Extreme Values -- Maximums/Minimums
+
+??for some f(x) 
+
+Global max is a point "a" where f(a) is bigger then even to(>=) f(x) for all x in interval
+Global min is a point "a" where f(a) <= f(x) for all x in interval
+
+Local max ...                                                        for all x nearby "a"   
+Local min ...                                for all x nearby "a"   
+
+----------------------------------------------------------------------------
+some interval a to b
+some function 
+GMa , LMa
+GMi , LMi
+
+----------------------------------------------------------------------------
+F(x) = 1/x on interval(o, infinite)
+
+A continuous function on an interval a<=x<=b
+it [always] has a Global min and Global max
+
+If f'(a)>0
+or f'(a)<0
+there not Min or Max
+
+If we are at a max/min
+then either 
+	f'(a) = 0
+	f'(a) = D.N.E   e.g.f(x) = |x| 在x=0处 导数不存在
+	Critical Points
+
+The opposite does not have to be true.
+----------------------------------------------------------------------------
+f(x) = x^3 - 9x^2 + 24x
+Where are the critical points?
+f'(x) = 3x^2 - 18x +24
+1)the derivative's always exits
+2) f'(x) = 0 = 3x^2 -18x +24
+		x^2-6x+8 = 0
+		(x-2)(x-4) = 0
+		x =2, x =4
+
+----------------------------------------------------------------------------
+The opposite does not have to be true.
+f(x) = x^3
+f'(x) = 3x^2 = 0
+so x = 0 is only critical point
+but don't have max/min
+
+----------------------------------------------------------------------------
+Finding Global max/min (on interval a<= x <= b)
+1) List all candidates(Make a list of candidates)
+   - end points ( a and b )
+   - critical points  [in interval]
+   		f' undefined (derivative = D.N.E)
+   		f' = 0 (derivative = 0 )
+2) Plug all points into function
+3) Largest value is global max
+   smallest value is global min
+
+----------------------------------------------------------------------------
+Find global max/min for f(x) = 2x^3 - 15x^2 + 24x + 7 , 0<=x<=6
+x 	f(x)
+0	7	
+6	43   G Max
+1	18
+4	-9	 G Min
+
+f'(x) = 6x^2 - 30x + 24 = 0
+x^2 -5x +4 = 0
+x = 1, x = 4
+
+
+┏━━━━━┓
+┃Lecture11 ┃
+┗━━━━━┛
+f(x) = x/(x^2+5) on 4 <= x <= 8 [4,8]
+x	f(x)
+4	4/21	Max
+8	8/69	Min
+
+f'(x) = [1*(x^2 + 5) - x*2x] /(x^2+5)^2 = 0
+-x^2+5 = 0
+x^2 = 5
+不在区间内
+
+----------------------------------------------------------------------------
+Finding/Classifying local min/local max
+1) List all candidates(Make a list of candidates)
+   	-end points (if we have end points)
+	-critical points 
+		f' = 0
+		f' = D.N.E
+2) Apply first derivative test and Classifying 
+	observation
+	If f'(x) > 0 on some interval  => function is increasing
+	If f'(x) < 0 on some interval  => function is decreasing
+	** Between critical points f'(x) >0 or f'(x) < 0
+
+First Dervative test, (used to classify critical point)
+a is a critical point
+Max f'(x) < 0 f'(x) >0
+Min f'(x) > 0 f'(x) <0
+Neither 
+	f'(x) < 0 f'(x) <0
+	f'(x) > 0 f'(x) >0 f(x) = x^3
+
+----------------------------------------------------------------------------
+f(x) = x^5 - 15x^3 + 8
+Find all local min/max
+f'(x) = 5x^4 - 45x^2 = 0
+x = 0, 3, -3
+critical points
+x	f(x)
+0	neither
+3	min
+-3	max
+
+f'(1) = -40 < 0
+----f'>0-----3----f'<0----0----f'<0----3----f'>0----
+		max 		Neither 	min
+
+On what interval(s) is f(x) increasing?
+-infinite < x <= -3  
+3<= x < infinite
+On what interval(s) is f(x) decreasing?
+-3 <= x <= 3
+
+----------------------------------------------------------------------------
+g(x) = x^2/3 - 2/9*x^3
+g'(x) = 2/3*x^(-1/3) - 2/9*3x^2
+	  = 2/3(x^(-1/3 - x^2)
+g'(0) = D.N.E
+1 = x^(7/3)
+g'(1) = 0
+
+x
+0 min
+1 max
+----f'<0----0----f'>0---1------f'<0	
+100billion
+1/8
+g'(1/8) = 2/3*(2-1/64)
+
+----------------------------------------------------------------------------
+Rolle's Theorem
+* f is continuous on a <= x <= b
+* f is differentiable(take the derivative) on a < x < b
+* f(a) = f(b)
+==> there is some point c(s), where a< c <b where f'(c) = 0
+
+
+----------------------------------------------------------------------------
+Mean Value Theorem
+* f is continuous on a<=x<=b
+* f is differentiable on a<x<b
+==> there is some c with a<c<b
+	such that f'(c) = [f(b)-f(a)]/(b-a)  -- Average rate of change between a and b
+
+
+
+┏━━━━━┓
+┃Lecture12 ┃
+┗━━━━━┛
+f(x) = tanx - 4x on (-Pi/2, Pi/2)
+f'(x) = secx^2 - 4 = 0
+1/cosx^2 = secx^2 = 4
+cosx^2 = 1/4
+cosx = 1/2 ,-1/2
+x = Pi/3, -Pi/3
+-Pi/2	-Pi/3	0	Pi/3	Pi/2
+				f'(0) = -3
+Plot[Sec[x], {x, -Pi/2, Pi/2}, Ticks -> {{-Pi/2, 0, Pi/2}, {0, 1, 2}}
+看f'(x)的图像
+
+x=-Pi/3 Max 	f(-Pi/3) = -3^(1/2) + 4Pi/3
+x=Pi/3	Min 	f(Pi/3) = 3^(1/2) -4Pi/3
+
+----------------------------------------------------------------------------
+Rolle's Theorem
+Mean Value Theorem
+证明：
+g(x) = (f(x) - f(a))*(b-a) - (f(b)-f(a))*(x-a)
+f(x)->continuous then g(x)->continuous
+g(a) = 0
+g(b) = 0
+=> g'(c) = 0, a<c<b
+g'(x) = f'(x)(b-a) - (f(b)-f(a))
+g'(c) = f'(c)(b-a) - (f(b)-f(a)) = 0
+f'(c) = [f(b)-f(a)]/(b-a)
+instantaneous r.o.c 	average r.o.c
+break the speed limit point
+
+----------------------------------------------------------------------------
+
+f(x) = x^3 - 3x^2
+verify mean value theorem on -1<=x<=3
+							 a      b
+f'(c) = [f(b)-f(a)]/(b-a) = [0 -(-4)]/(3-(-1)) = 1
+f'(x) = 3x^2 - 6x
+f'(c) = 3c^2 -6c = 1
+only need find one c
+c = [-b +/-(b^2-ab)^1/2]/a???
+  = [6+/- [36+12]^1/2]/6
+  = 1+/-2/3*3^(1/2)
+
+----------------------------------------------------------------------------
+Corollary
+If f'(x)=0 then f(x) is constant
+pick any a, b
+[f(b) -f(a) ]/(b-a) = f'(c) = 0
+=> f(b)-f(a)=0 f(b)=f(a) => constant
+
+----------------------------------------------------------------------------
+f(x), g(x)
+f'(x) = g(x)
+g'(x) = f(x)
+f(0) = 1
+g(0) = 0
+Q: f(100)^2 - g(100)^2
+
+h(x) = (f(x))^2 - (g(x))^2
+h'(x) = 2(f(x))f'(x) - 2(g(x))g'(x) = 2f(x)g(x) - 2g(x)f(x) = 0
+h(x) is constant function
+h(0) = f(0)^2 -g(0)^2 = 1-0 = 1
+
+f(x) = cosh(x) = [e^x+e^(-x)]/2
+f(x) = sinh(x) = [e^x-e^(-x)]/2
+
+sinh(2x) = 2sinhx*coshx
+
+----------------------------------------------------------------------------
+Secondary Derivative Test
+tells us about concavity(how the function is "bending")
+
+"bending up" - concave up  f'(x) increasing--f''(x)>0
+"bending down" - concave down  f'(x) decreasing--f''(x)<0
+

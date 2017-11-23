@@ -66,6 +66,9 @@ Plot[Sin[(2*Pi)/3*t], {t, 0, 3}, GridLines -> Automatic]
 
 
 
+微积分英文专业词汇https://wenku.baidu.com/view/044cde29590216fc700abb68a98271fe910eafb0.html
+
+
 
 ┏━━━━━┓
 ┃Lecture01 ┃
@@ -335,7 +338,7 @@ d/dx(f(x)*g(x)) 不等于 d/dx(f(x)) * d/dx(g(x))
 └───────────────────────────────────────
 ┌───────────────────────────────────────
 │ Addition rule: 
-│   d/dx(f(x)+g(x)) = d/dx(f(x)) = d/dx(g(x))
+│   d/dx(f(x)+g(x)) = d/dx(f(x)) + d/dx(g(x))
 │ 
 │ 
 │ Scaling rule:
@@ -506,7 +509,6 @@ f'(a) = lim[f(a+h)-f(a)]/h
 │ 			    b->a
 │ 			  = f'(g(x)) * g'(x)  let the g(x) untouched
 └───────────────────────────────────────
-
 
 
 ----------------------------------------------------------------------------
@@ -792,7 +794,7 @@ there not Min or Max
 If we are at a max/min
 then either 
 	f'(a) = 0
-	f'(a) = D.N.E   e.g.f(x) = |x| 在x=0处 导数不存在
+	f'(a) = D.N.E   e.g.f(x) = |x| 在x=0处的导数f'(x) = lim|x|/x = D.N.E 不存在
 	Critical Points
 
 The opposite does not have to be true.
@@ -919,7 +921,7 @@ Rolle's Theorem
 ----------------------------------------------------------------------------
 Mean Value Theorem
 * f is continuous on a<=x<=b
-* f is differentiable on a<x<b
+* f is differentiable on a<x<b -- smooth
 ==> there is some c with a<c<b
 	such that f'(c) = [f(b)-f(a)]/(b-a)  -- Average rate of change between a and b
 
@@ -999,6 +1001,220 @@ sinh(2x) = 2sinhx*coshx
 Secondary Derivative Test
 tells us about concavity(how the function is "bending")
 
-"bending up" - concave up  f'(x) increasing--f''(x)>0
-"bending down" - concave down  f'(x) decreasing--f''(x)<0
+"bending up" 
+	concave up  
+	f'(x) increasing
+	f''(x)>0
+	三种图形
+"bending down" 
+	concave down  
+	f'(x) decreasing
+	f''(x)<0
+	三种图形
 
+┏━━━━━┓
+┃Lecture13 ┃
+┗━━━━━┛
+Inflection points -> where we change concavity
+occur where either f''=0 or f'' = D.N.E
+
+----------------------------------------------------------------------------
+f(x) = 3x^5 - 5*x^4 +1
+f'(x) = 15x^4-20x^3
+f''(x) = 60x^3 - 60x^2 = 0
+60x^2(x-1) =0
+x=0, 1
+
+------------------0------------1------------	
+f''(-1) = -120<0	f''(1/2)<0		f''(2)>0
+concave down		concave down	concave up
+x= 1 is Inflection point
+
+f'(0)=0
+
+*f'(a) = 0	f''(a)=Exist
+if f''(a)<0 --> then (a, f(a)) is max 	哭脸
+if f''(a)>0 --> then (a, f(a)) is min 	笑脸
+if f''(a)=0 --> then try harder			O  f(x) = x^4
+
+ 
+
+
+----------------------------------------------------------------------------
+Cave Sketching(Graph Drawing)  -- the Section is out of date
+x 	f(x)
+0	1
+0.1	1.2
+0.3	1.1
+0.7	1.6
+
+* find interesting points
+* connect the dots
+f'>0		f'>0
+f''>0		f''<0
+-------------------
+f'<0		f'<0
+f''>0		f''<0
+
+Interesting Pts
+* x-intercept[s]/y-intercept 
+    (y=0)			(x=0)
+* Asymptotes
+	vertical --> 不等于0/0
+	horizontal --> lim f(x)
+				   x->+/-infinite
+*critical pts (Transition points)
+	f'=0
+	f'=D.N.E
+	(include maxs/mins)
+* inflection pts (Transition points)
+	f''=0
+	f''=D.N.E
+
+(Transition points)
+* function goes form increasing to decreasing (or vice-versa)
+	f'>0	f increasing
+	f'<0	f decreasing
+* function goes from concave up to concave down (or vice-versa)
+	f''>0	f concave up
+	f''<0	f concave down
+----------------------------------------------------------------------------
+Sketch y = x^3 - 3x + 2
+y-int: (0,2)
+x-int: x = 1, -2
+critical points:
+	f'(x) = 3(x^2 -1) = 0		x=1, x=-1  (1,0)  (-1,4)
+inflection points:
+	f'(x) = 6x = 0				x=0		   (0,2)
+------1------0------ -1------
+	y'>0	y'<0		y'>0	
+
+
+
+
+
+┏━━━━━┓
+┃Lecture14 ┃
+┗━━━━━┛
+lim 			f(x) = K
+x->+/-infinite
+
+lim 3x^2+5x^2-2
+x->infinite
+
+infinite/infinite
+
+----------------------------------------------------------------------------
+Section: OPTIMIZATION
+- Maximite or Minimite (try to get the most what we have)
+Basic idea:
+   - Find appropriate variables
+   		* draw picture
+   		* label valuable quantities (my profit /my quantity)
+		What are we trying to optimize?
+		What can we vary?
+   - Find a function for waht we are trying to optimize?(representing what we are trying to optimize of a single variable)
+   	 (use constraints if needed to reduce to a single variable)
+   - Use calculus to find max/min
+
+----------------------------------------------------------------------------
+Make a can 16 Pi in^3 volume
+* What dimensions minimize surface aresa of can?
+r - radius(easy to remember)
+h
+V = Pi*r^2*h =16Pi---constrain
+SA = 2Pi*r^2*h + h*2Pi*r
+	top/bottom	 side
+
+SA(x) = 2Pi*r^2 + 2Pi r*16/r^2
+   	  = 2Pi *r^2+ 32Pi/r
+SA'(x) = 4Pir+32Pi/r^2 = 0
+=> r =2, h=
+
+
+----------------------------------------------------------------------------
+chicken Area 400feet of fencing
+maximum area you can give the chickens?
+Area = x*y
+2x+y=400
+
+A'(x) = 0
+A''(x) = -4 <0 max
+
+
+
+┏━━━━━┓
+┃Lecture15 ┃
+┗━━━━━┛
+		8''
+10''
+l w h
+cut out corners
+
+maximum possible volume of box?
+V = l*w*h
+  = (10-2h)(8-2h)h
+  = -80h-26h^2+4h^3
+FOIL
+
+V' = ... = 0
+0<h<4
+
+----------------------------------------------------------------------------
+AntiDerivatives  - Opposite of a derivative
+F(x) is an antiderivative of f(x) if F'(x)=f(x)
+
+f(x) = 2x
+F(x) = x^2
+F(x) = x^2 + 5
+F(x) = x^2 + C
+
+Theorem:
+If F(x) is an antiderivative of f(x) then all other antiderivative of f(x) are of the form  F(x)+C
+
+G(x) is also an antiderivative of f(x)
+d/dx(F(x)-G(x)) = d/dx(F(x)) - d/dx(G(x)) = f(x) - f(x) = 0
+Corollary
+=> F(x)-G(x) = C
+
+----------------------------------------------------------------------------
+∫f(x)dx 			= 	F(x) + C
+antiderivative of f(x) 	any antiderivative
+indefinite integration
+
+		DERIVATIVES 											ANTI-DERIVATIVES
+d/dx(f(x)+g(x)) = d/dx(f(x)) + d/dx(g(x))				∫(f(x)+g(x))dx = ∫f(x)dx + ∫g(x)dx
+d/dx(Kf(x)) = k d/dx(f(x))								∫(Kf(x))dx = k ∫f(x)dx
+d/dx(f(x)g(x)) = d/dx(f(x))*g(x) + f(x)*d/dx(g(x)) 		integration by parts 
+d/dx(f(g(x))) = f'(g(x)) * g'(x)						substitution rule
+
+d/dx(x^a) = ax^(a-1)									∫x^a dx = 1/(1+a)x^(a+1) + C
+d/dx(sinx) = cosx 										∫cosx dx = sinx + C
+d/dx(cosx) = -sinx 										∫sinx dx = cosx + C
+d/dx(tanx) = secx^2										∫secx^2 dx = tanx + C
+d/dx(secx) = secx*tanx									∫secx*tanx dx = secx + C
+d/dx(arctanx) = 1/(1+x^2)								∫1/(1+x^2) dx = arctanx + C
+
+
+----------------------------------------------------------------------------
+∫(x^(1/2) + x^(-1)) (x+2x^2) dx   FOIL
+= ∫ [x^(3/2) + 2x^(5/2) + 1 + 2x] dx
+= ∫ x^(3/2) dx + ∫ 2x^(5/2) dx + ∫ 1dx + ∫2x dx
+= x^(5/2)/(5/2) + 2*x^(7/2)/(7/2) + x^1/1 + 2*x^2/2 + C
+...
+
+----------------------------------------------------------------------------
+dy/dx = 2 secx^2
+and y^(Pi/4) = 1
+Q: what was y?
+y = ∫ 2secx^2 dx
+  = 2 ∫ secx^2 dx
+  = 2 tanx + C
+1 = 2 tan(Pi/4) + C
+C = -1
+
+y = 2tanx - 1
+
+┏━━━━━┓
+┃Lecture16 ┃
+┗━━━━━┛

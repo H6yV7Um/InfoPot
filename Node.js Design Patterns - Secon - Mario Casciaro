@@ -1,0 +1,122 @@
+Node.js Design Patterns - Secon - Mario Casciaro
+July 2016
+Luciano Mammino is a software engineer born in 1987
+Tane Piper
+Joel Purra
+http://www.packtpub.com/
+
+http://www.packtpub.com/support and register to have the files e-mailed directly to you.
+
+┏━━━━┓
+┃Preface ┃
+┗━━━━┛
+First,server-side platforms.People realize that using JavaScript on the server is not as bad as it is in the browser
+The second revolutionizing factor is its single-threaded, asynchronous
+architecture.
+The last and most important aspect of Node.js lies in its ecosystem: the npm
+package manager,
+
+----------------------------------------------------------------------------
+
+most of these questions can now be easily answered with a
+design pattern, a proven coding technique, or a recommended practice.
+
+----------------------------------------------------------------------------
+
+How to use the right point of view
+A set of patterns to solve common Node.js design and coding problems
+You will gain an understanding of the basic building blocks and principles of writing large and well-organized Node.js applications
+
+----------------------------------------------------------------------------
+
+several real-life libraries and technologies, such as LevelDb, Redis, RabbitMQ, ZMQ, Express, and many others.
+
+┏━━━━━━━━━━━━━━━━━━━━━━┓
+┃Chapter 1, Welcome to the Node.js Platform  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━┛
+The Node.js philosophy --a set of principles and guidelines
+
+https://en.wikipedia.org/wiki/List_of_software_development_philosophies
+
+1) Small core : having the smallest set of functionalities, leaving the rest to the socalled userland (or userspace), the ecosystem of modules living outside the core.
+
+2) Small modules: not only in terms of code size, but most importantly in terms of scope.
+Unix philosophy, particularly in two of itsprecepts, which are as follows:
+"Small is beautiful."
+"Make each program do one thing well."
+
+making sure that each installed package will have its own separate set of dependencies
+3) Small surface area : 
+ * have the characteristic of exposing a minimal set of functionalities.
+ * Another characteristic of many Node.js modules is the fact that they are created to be used rather than extended.
+
+4) Simplicity and pragmatism
+Keep It Simple, Stupid (KISS)
+Richard P. Gabriel  In his essay, The Rise of "Worse is Better", he says:
+"The design must be simple, both in implementation and interface. It is more important for the implementation to be simple than the interface. Simplicity is the most important consideration in a design."
+
+----------------------------------------------------------------------------
+Introduction to Node.js 6 and ES2015
+
+Depending on your Node.js version, some of these features will work
+correctly only when strict mode is enabled
+"use strict"
+
+
+
+
+----------------------------------------------------------------------------
+*** The reactor pattern — the mechanism at the heart of the Node.js asynchronous architecture
+the main concepts behind the pattern:
+1) the single-threaded architecture 
+2) the nonblocking I/O
+
+I/O is slow
+Accessing the RAM is in the order of nanoseconds (10E-9 seconds), 
+while accessing data on the disk or the network is in the order of milliseconds (10E-3 seconds).
+
+Blocking I/O
+
+
+----------------------------------------------------------------------------
+
+Chapter 2, Node.js Essential Patterns
+asynchronous coding and design patterns with Node.js
+
+Chapter 3, Asynchronous Control Flow Patterns with Callbacks,
+how to mitigate the "callback hell" problem using plain JavaScript and the async library.
+
+Chapter 4, Asynchronous Control Flow Patterns with ES2015 and Beyond,
+
+
+Chapter 5, Coding with Streams,
+one of the most important patterns in Node.js: streams.
+
+
+Chapter 6, Design Patterns,
+1 the most popular conventional design patterns and shows you how unconventional they might look in Node.js
+2 some emerging design patterns that are specific only to JavaScript and Node.js
+
+Chapter 7, Wiring Modules,
+design patterns such as Dependency Injection and service locator
+
+
+Chapter 8, Universal JavaScript for Web Applications,
+one of the most interesting capabilities of modern JavaScript web applications: being able to share application code between the frontend and the backend.
+building a simple web application with React, Webpack, and Babel.
+
+Chapter 9, Advanced Asynchronous Recipes,
+
+Chapter 10, Scalability and Architectural Patterns,
+
+Chapter 11, Messaging and Integration Patterns,
+how to build and integrate complex distributed systems using ZMQ and AMQP.
+
+
+Node.js version 6 (or greater) and npm 3 (or greater)
+use a transpiler such as Babel
+
+want to get the most out of it in terms of productivity, design quality, and scalability.
+
+
+

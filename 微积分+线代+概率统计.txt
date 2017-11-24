@@ -1188,9 +1188,9 @@ d/dx(Kf(x)) = k d/dx(f(x))								∫(Kf(x))dx = k ∫f(x)dx
 d/dx(f(x)g(x)) = d/dx(f(x))*g(x) + f(x)*d/dx(g(x)) 		integration by parts 
 d/dx(f(g(x))) = f'(g(x)) * g'(x)						substitution rule
 
-d/dx(x^a) = ax^(a-1)									∫x^a dx = 1/(1+a)x^(a+1) + C
+d/dx(x^a) = ax^(a-1)									∫x^a dx = 1/(1+a)x^(a+1) + C (a不等于-1)
 d/dx(sinx) = cosx 										∫cosx dx = sinx + C
-d/dx(cosx) = -sinx 										∫sinx dx = cosx + C
+d/dx(cosx) = -sinx 										∫sinx dx = -cosx + C
 d/dx(tanx) = secx^2										∫secx^2 dx = tanx + C
 d/dx(secx) = secx*tanx									∫secx*tanx dx = secx + C
 d/dx(arctanx) = 1/(1+x^2)								∫1/(1+x^2) dx = arctanx + C
@@ -1218,3 +1218,151 @@ y = 2tanx - 1
 ┏━━━━━┓
 ┃Lecture16 ┃
 ┗━━━━━┛
+
+given dy/dx = f(x)  <--- How y is changing
+and y(a)=b  		<-- initial condition
+can find a unique y 
+that satisfies this 
+y = ∫f(x)dx = F(x)+C 
+choose C to staisfy y(a)=b
+
+
+Two antiderivatives of f(x) only differ by a constant
+∫ f(x)dx = F(x) + C
+Indefinite Integral
+
+
+----------------------------------------------------------------------------
+a(t) = 2 + sint
+v(0) = 1
+s(0) = 3
+
+v(t) = ∫(2+sint)dt
+	 = 2∫dt + ∫ sint dt
+	 = 2t - cost + C !!!
+
+v(0) = 0 + cost0 + C = 1
+C = 2
+v(t) = 2t - cost + 2
+
+s(t) = ∫(2t - cost + 2)dt
+	 = ∫(2t)dt - ∫cost dt + ∫ 2 dt
+	 = 2*(t^2/2) - sint + 2t + D
+	 = t^2 - sint + 2t + D
+s(0) = 0 - sin0 + 0 + D= 3
+D = 3
+s(t) = t^2 - sint + 2t + 3
+
+
+----------------------------------------------------------------------------
+Integral Calculus
+
+- What is the total?
+
+Area
+
+y = x
+a b
+Area = 1/2*b*b
+Area = 1/2*a*a
+
+chop into n strips
+ith stip
+
+delta xi = width at the bottom
+ci is some point in the ith interval
+f(ci) = height of ith strip
+area of ith strip 约等于 f(ci) * delta xi
+
+																			n
+Riemann Sum  -->Total area 约等于 f(ci)delta x1 + f(c2)delta x2  + ... + f(cn)delta xn  = srgma f(cj) deltaxj
+																			j=1
+Right hand sums --> Choose ci on the right
+Left hand sums --> choose ci on the left
+
+delta x = (b-a)/h
+
+Idea: chop up the interval from a to b into equally sized strips
+
+w/width deltaX = (b-a)
+
+R3 = f(2)1 + f(3)1 + f(4)1
+   =  2^2 + 3^2 + 4^2
+   = 29
+
+L3 = f(1)1 + f(2)1 + f(3)1
+   = 1^2 + 2^2 + 3^2
+   = 14
+
+f(x)  is increasing from a to b 
+	Ln <= Area <= Rn
+f(x) is dcreasing from a to b
+	Rn <= Area <= Ln
+
+srgma 
+s is for sum
+
+n
+srgma a = am + am+1 + am+2 + .. + an 
+j=m 
+j:index variable dummy
+m: where the sum starts
+n: where the sum ends
+a: what we sum (depends on j)
+		n
+Rn = srgma f(a + j*detla x) delta x
+		j=1      right end pt
+		n
+Ln = srgma f(a + (j-1)*delta x) delta x
+		j=1
+		n-1
+   = srgma f(a + i deltax) delta x
+   		i=0
+
+
+  n
+srgma (aj + bj) = srgma aj + srgma bj
+  j=m
+  n 			n
+srgma K*aj = K srgma aj
+  j=m 			j=m
+
+  n
+srgma 1 = n
+  i=1
+
+  n
+srgma i = 1 + 2 + 3 + ... + n = n(n+1)/2 = 1/2*n^2 + 1/2*n
+  i=1
+
+  n
+srgma i^2 = 1^2 + 2^2 + 3^2 + ... + n^2 =  n(n+1)(2n+1)/6 = 1/3*n^3 + 1/2*n^2 + 1/4*n
+  i=1
+
+
+
+┏━━━━━┓
+┃Lecture17 ┃
+┗━━━━━┛
+																				     ∫ f(x)*dx	 ---indefinite integral 
+If f(x) is continuous on a <= x <= b 		    	    	 	  n
+lim Rn       = lim Ln       = lim Riemann Sum    = lim 			 srgma f(ci)*delta   = ∫b a f(x)*dx ---definite integral
+n->inifinite   n->inifinite   n->inifinite 	     **delta xi->0  i=1
+																							 "Area" between x= a and b
+																							 不一定是正的
+----------------------------------------------------------------------------
+∫b a 1 dx = b - a
+∫b a x dx = 1/2 b^2-1/2 a^2
+∫b a x^2 dx = 1/3 b^3-1/3a^3
+
+----------------------------------------------------------------------------
+∫b a (f(x)+g(x))dx = ∫b a f(x)dx + ∫b a g(x)dx
+∫b a K*f(x)dx = K * ∫b a f(x)dx
+			∫3 2(2x^2 + 3x -4)dx = 
+∫a a f(x)dx = 0
+∫b a f(x)dx  = - ∫a b f(x)dx
+			∫0 3 x dx  = - ∫3 0 x dx
+∫b a f(x)dx + ∫c b f(x)dx  = ∫c a f(x)dx
+
+
+

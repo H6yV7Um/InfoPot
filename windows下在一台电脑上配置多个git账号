@@ -1,0 +1,51 @@
+windows下在一台电脑上配置多个git账号 http://blog.csdn.net/mq2856992713/article/details/62090841
+clip < ~/.ssh/id_rsa.pub	
+clip < ~/.ssh/id_rsa_littlecloudz.pub
+	
+ls -al ~/.ssh
+**测试部署是否成功
+ssh -T -v git@code.ctripcorp.com
+ssh -T -v git@git.dev.sh.ctripcorp.com
+ssh -T -v git@github.com
+
+**生成新的ssh key
+默认  ssh-keygen -t rsa -C "xxxxx@xxxxx.com"  
+ssh-keygen -t rsa  -f ~/.ssh/id_rsa_oschina -C "2856992713@qq.com"
+
+**修改config配置文件
+在.ssh目录下创建一个config文本文件,添加相关配置。
+
+
+D:\Users\zhangxy\.ssh
+
+# 配置git.oschina.net 
+Host git.oschina.net 
+    HostName git.oschina.net
+    IdentityFile C:\\Users\\Administrator\\.ssh\\id_rsa_oschina
+    PreferredAuthentications publickey
+    User 殇神马
+
+# 配置gitLab 
+Host 100.100.189.75:88
+    HostName 100.100.189.75:88
+    IdentityFile C:\\Users\\Administrator\\.ssh\\id_rsa
+    PreferredAuthentications publickey
+    User 马青
+
+
+**修改config配置文件后，重新ssh-add
+eval $(ssh-agent -s)
+Agent pid 59566	
+ssh-add ~/.ssh/id_rsa
+ssh-add ~/.ssh/id_rsa_littlecloudz
+	
+
+git config --global --unset user.name
+git config --global --unset user.email
+
+
+git config user.name "xxxx"
+git config user.email "xxxx@xx.com"
+
+如果你曾经出现过这种问题，我有一个解决方案首先，清除所有的key-pairssh-add -Drm -r ~/.ssh删除你在github中的public-key重新生成ssh密钥对ssh-keygen -t rsa -C "xxx@xxx.com"chmod 0700 ~/.sshchmod 0600 ~/.ssh/id_rsa*接下来正常操作在github上添加公钥public-key:1、首先在你的终端运行 xclip -sel c ~/.ssh/id_rsa.pub将公钥内容复制到剪切板2、在github上添加公钥时，直接复制即可3、保存测试：在终端 ssh -T git@github.com成功即可，不成功？我也没办法了，哈哈
+

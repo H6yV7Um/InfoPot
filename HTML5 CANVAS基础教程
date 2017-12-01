@@ -1,0 +1,181 @@
+第3章 Canvas基础知识 48
+
+ExplorerCanvas:添加一个脚本，canvas元素就能够在ie9之前的版本上正常运行
+
+**绘图是在2D渲染上下文进行的，而不是在canvas元素中进行。
+canvas元素访问和显示2D渲染上下文
+
+----------------------------------------------------------------------------
+
+笛卡儿坐标系统
+左上角为原点（0,0）
+单位是1个像素
+
+
+var canvas = $('#myCanvas');
+var context = canvas.get(0).getContext("2d");
+----------------------------------------------------------------------------
+
+填充矩形
+context.fillStyle = "rgb(255,0,0)";
+context.fillRect(40, 40, 100, 100);
+正方形原点（左上角）的(x,y)坐标值(在canvas的坐标系统中)
+矩形的宽度和高度
+----------------------------------------------------------------------------
+
+矩形的轮廓
+context.lineWidth = 5;
+context.strokeStyle = "rgb(255,0,0)";
+context.strokeRect(40, 40, 200, 100);
+----------------------------------------------------------------------------
+
+
+路径
+context.beginPath();
+context.moveTo(40, 40); 绘制路径的原点坐标
+context.lineTo(340, 40); 设置线条的终点坐标
+context.closePath();
+context.stroke();
+
+
+
+----------------------------------------------------------------------------
+圆弧（圆形）
+context.beginPath();
+context.arc(230, 90, 50圆弧半径, 0, Math.PI*2, false顺时针);
+圆弧原点的(x,y)坐标值，即圆心
+圆弧半径
+开始角度(弧度，而不是角度)  var degrees = 1; var radians = degrees*(Math*PI/180); //0.0175弧度
+结束角度(弧度，而不是角度)
+逆时针true，顺时针false
+
+context.closePath();
+context.fill();
+
+----------------------------------------------------------------------------
+绘制文本
+var text = "Hello, world";
+context.font = "italic 30px serif";
+context.fillText(text, 40, 40);
+文本原点（左下角）的(x,y)坐标值
+默认文本10px sans-serif
+
+----------------------------------------------------------------------------
+描边文字
+var text = "Hello, world";
+context.font = "italic 30px serif";
+context.strokeText(text, 40, 40);
+
+----------------------------------------------------------------------------
+context.clearRect(0, 0, 500, 500);
+context.clearRect(0, 0, canvas.width(), canvas.height()); //jQuery
+context.clearRect(40, 40, 100, 100);
+擦除区域的原点（左上角）设置为clearRect正方形的左上角(40, 40)
+
+
+----------------------------------------------------------------------------
+宽度/高度技巧：擦除Canvas上的所有内容，并从零开始绘图
+依据：每当重新设置一个canvas元素的width和height属性时，canvas都会自动清除内容并返回其原始状态
+缺点：完全重置canvas上的所有内容，包括样式和颜色
+canvas.attr("width", canvas.width());
+canvas.attr("height", canvas.height());
+
+
+----------------------------------------------------------------------------
+将Canvas尺寸设置为浏览器窗口的大小（动态修改尺寸并填充整个浏览器窗口）
+默认宽度和高度：300*150
+XX 普通的HTML元素，将width和height属性设置为100%，但是canvas不支持，canvas会忽略百分比，将100%解释为100像素
+方法：将canvas元素的宽度和高度精确设置为浏览器窗口的宽度和高度 + css
+
+var canvas = $('#myCanvas');
+var context = canvas.get(0).getContext("2d");
+
+
+$(window).resize(resizeCanvas);
+function resizeCanvas() {
+    canvas.attr("width", $(window).get(0).innerWidth);
+    canvas.attr("height", $(window).get(0).innerHeight);
+    context.fillRect(0, 0, canvas.width(), canvas.height());    
+}
+resizeCanvas();
+
+重置css
+* {
+	margin: 0;
+	padding: 0;
+}
+保证html和body元素是用整个浏览器窗口的宽度和高度
+html, body {			
+	height: 100%;
+	width: 100%;
+}
+才能正确地设置宽度和高度，从而使之能够使用整个浏览器窗口的宽度和高度
+canvas {
+	display: block;
+}
+
+
+$(widnow).height()似乎并不支持所有浏览器
+
+----------------------------------------------------------------------------
+
+72--85 留白
+
+----------------------------------------------------------------------------
+合成
+修改全局合成属性会影响到修改之后所绘制的全部内容
+全局阿尔法值globalAlpha [0.0, 1.0] 默认值1.0
+
+context.globalAlpha = 0.5;
+context.fillStyle = "rgba(255,0,0, 0.5)"; //实际阿尔法值为0.5*0.5 = 0.25
+context.fillRect(40, 40, 100, 100);
+
+源覆盖于目标之上(source over desination)，源是绘制的新图形，而目标则是可能已经绘制了图形的2D渲染上下文
+因为 2D渲染上下文的globalCompositeOperation属性的默认值是soruce-over
+globalCompositeOperation支持的11种合成类型：
+
+----------------------------------------------------------------------------
+100
+将画布导出为图像
+toDataURL：将画布绘图转换为一个数据URL
+Firefox浏览器本身支持右键单击canvas元素，并另存为图像。它所使用的方法与在代码中使用toDataURL是完全相同的。
+
+context.save();
+context.fillRect(50, 50, 100, 100);
+
+context.fillStyle = "rgb(255, 0, 0)";
+context.fillRect(100, 100, 100, 100);
+
+context.restore();
+context.fillRect(150, 150, 100, 100);
+
+var dataURL = canvas.get(0).toDataURL();
+
+data:image/png:表示后续内容是一个PNG格式的图像的数据URL
+base64：表示数据采用base64编码格式，这种格式经常用于向使用文本数据的系统传输二进制数据（例如图像）。实际上，在base64后面的所有数字、字母和符号都是以文本表示的画布图像。
+
+var img = $("<img></img>");
+img.attr("src", dataURL);
+
+canvas.replaceWith(img);  //使用jQuery的replaceWith方法将canvas元素替换成img元素
+
+注意：base64数据比它表示的原始二进制图像数据大50%。
+
+----------------------------------------------------------------------------
+加载图像
+context.drawImage(image, x, y);
+参数image可以是：HTML img元素，HTML canvas元素，HTML5 video元素
+
+drawImage的两种调用方式：
+1.将完整尺寸的图像会知道画布上
+var image = new Image();
+image.src = "./images/test.png";
+$(image).load(function(){
+    context.drawImage(image, 0, 0);
+}); 
+load事件只有当所有内容（包括图像）完成加载之后才会触发
+直接将jQuery的load方法赋给图像对象，就可以保证我们只需要等待这个图像的加载完成，而不需要等待其他内容的加载
+
+----------------------------------------------------------------------------
+调整和裁剪图像
+

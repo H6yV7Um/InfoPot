@@ -1193,7 +1193,7 @@ d/dx(sinx) = cosx 										∫cosx dx = sinx + C
 d/dx(cosx) = -sinx 										∫sinx dx = -cosx + C
 d/dx(tanx) = secx^2										∫secx^2 dx = tanx + C
 d/dx(secx) = secx*tanx									∫secx*tanx dx = secx + C
-d/dx(arctanx) = 1/(1+x^2)								∫1/(1+x^2) dx = arctanx + C
+d/dx(arctanx) = 1/(1+x^2)								∫1/(1+x^2) dx = arctanx + C (不要忘了Constant)
 
 
 ----------------------------------------------------------------------------
@@ -1371,6 +1371,8 @@ Suppose f(x)<= g(x) on a<=x<=b
 
 m<=f(x)<= M on a <= x <= b
 m(b-a) <= ∫ b a f(x)dx <= M(b-a)
+m <= 1/(b-a)*∫ b a f(x)dx <= M
+	 "Average Value"
 
 
 ----------------------------------------------------------------------------
@@ -1378,7 +1380,7 @@ m(b-a) <= ∫ b a f(x)dx <= M(b-a)
 "odd" f(-x) = -f(x)
 
 ----------------------------------------------------------------------------
-Fundamental Theorem of Calculus I
+Fundamental Theorem of Calculus I :
 ** If f(x) is continuous on a<=x<b
 and F(x) is any antiderivative of f(x)
 then ∫b a f(x) dx = F(b) - F(a) = F(x)|b a
@@ -1414,3 +1416,73 @@ F(b)-F(a)
 ┏━━━━━┓
 ┃Lecture19 ┃
 ┗━━━━━┛
+∫Pi/4 0 sinx/(1-six^2) dx
+= ∫Pi/4 0 sinx/(sinx^2+cosx^2-sinx^2) dx
+= ∫Pi/4 0 sinx/cosx^2 dx
+= ∫Pi/4 0 tanx*secx dx
+=  secx |Pi/4 0
+=  secPi/4 * sec0
+= 2^(1/2) - 1
+
+----------------------------------------------------------------------------
+
+∫4 0 |4-x^2| dx 先画图
+=∫2 0 |4-x^2| dx +  ∫4 2 |4-x^2| dx
+= ∫2 0 (4-x^2) dx +  ∫4 2 (x^2-4) dx
+= (4x - 1/3*x^3)|2 0 + 1/3x^3-4x|4 2
+= (8-8/3)-(0-0) + (1/3*64-16)-(1/3*8-8)
+= 64/3-8/3-8/3
+= 16
+
+----------------------------------------------------------------------------
+
+Fundamental Theorem of Calculus II:
+If f(x) is a continuous function on a<=x<=b
+then d/dx(∫x c f(t)dt) = f(x)
+a<=c<=b
+
+A(x) = ∫x c f(t)dt
+"Area"
+
+Proof:
+d/dx(∫x c f(t)dt) = lim ∫x+h c F(t)dt - ∫x c f(t)dt
+					h->0
+				  = lim 1/h∫x+h x f(t)dt
+				    h->0
+
+m <= 1/h∫x+h x f(t)dt <= M
+
+
+
+----------------------------------------------------------------------------
+d/dx(∫x c f(t)dt) = F(x)
+∫x c d/dt(f(t))dt = f(x) + C
+				  = f(x) - f(c)
+x= c 
+∫c c d/dx(f(t))dt = f(c) + C
+
+----------------------------------------------------------------------------
+d/dx(∫x 1 (1+5^3)^(1/2) dt)
+
+d/dx(∫x^2 1 (1+t^3)^1/2 dt)
+= (1+(x^2)^3)^1/3* 2x     <---g'(x)
+g(x) = x^2
+f(x) = ∫x 1 (1+t^3)^(1/2) dt
+
+
+** d/dx(∫g(x) c f(t)dt) = f(g(x))*g'(x)
+
+
+d/dx(∫x^2 cosx (1+t^3)^1/2 dt)
+
+** d/dx(∫g(x) h(x) f(t)dt) = f(g(x))*g'(x) - f(h(x))*h'(x)
+
+F(x) = ∫sinx -1 (1-t^2)^(1/2) dt
+Q: waht is the tangent line @ x = 0?
+F(0) = ∫0 4 (1-t^2)^(1/2)dt = Pi/4  作图
+
+F'(x) = (1-sinx^2)^(1/2)*cosx
+F'(0) = (1-sin0^2)^(1/2)*cos0 = 1
+
+y = F(a)+F'(a)(x-a)
+  = Pi/4 + x

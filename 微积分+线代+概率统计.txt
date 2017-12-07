@@ -1193,7 +1193,7 @@ d/dx(sinx) = cosx 										∫cosx dx = sinx + C
 d/dx(cosx) = -sinx 										∫sinx dx = -cosx + C
 d/dx(tanx) = secx^2										∫secx^2 dx = tanx + C
 d/dx(secx) = secx*tanx									∫secx*tanx dx = secx + C
-d/dx(arctanx) = 1/(1+x^2)								∫1/(1+x^2) dx = arctanx + C (不要忘了Constant)
+d/dx(arctanx) = 1/(1+x^2)								∫1/(1+x^2) dx = arctanx + C (不要忘了Constant)   ∫1  0 (1-x^2)^(1/2) dx = Pi/4
 
 
 ----------------------------------------------------------------------------
@@ -1380,8 +1380,8 @@ m <= 1/(b-a)*∫ b a f(x)dx <= M
 "odd" f(-x) = -f(x)
 
 ----------------------------------------------------------------------------
-Fundamental Theorem of Calculus I :
-** If f(x) is continuous on a<=x<b
+** (1) Fundamental Theorem of Calculus I :
+If f(x) is continuous on a<=x<b
 and F(x) is any antiderivative of f(x)
 then ∫b a f(x) dx = F(b) - F(a) = F(x)|b a
 
@@ -1436,10 +1436,12 @@ F(b)-F(a)
 
 ----------------------------------------------------------------------------
 
-Fundamental Theorem of Calculus II:
+** (2) Fundamental Theorem of Calculus II:
 If f(x) is a continuous function on a<=x<=b
-then d/dx(∫x c f(t)dt) = f(x)
+then d/dx( ∫x c f(t)dt ) = f(x)
 a<=c<=b
+∫x c f(t)dt is anti-derivative of f(x)
+
 
 A(x) = ∫x c f(t)dt
 "Area"
@@ -1486,3 +1488,154 @@ F'(0) = (1-sin0^2)^(1/2)*cos0 = 1
 
 y = F(a)+F'(a)(x-a)
   = Pi/4 + x
+
+
+┏━━━━━┓
+┃Lecture20 ┃
+┗━━━━━┛
+∫x c g(t)dt = x^2 + x - 6
+(1) What is g(x)?
+(2) What can we say about c ?
+d/dx( ∫x c g(t)dt ) = d/dx(x^2 + x -6)
+∫c c g(t)dt = 0
+----------------------------------------------------------------------------
+Integration - idea is breaking to small parts; add them up
+
+I know a rate of change which is constant
+rate: 1/10 gal/min
+Question: How many gallon are in the bucket after 5 minutes? 1/2gallon
+
+rate: (1/20+t/10) gals/min
+Question: after 5 minutes
+		∫5 0 (1/20+t/10)dt         = (1/20t+t^2/20)|5 0 = (1/20*5+5^2/20)-0 = 30/20	= 3/2 gals
+gals/min @time t  length of time t
+
+----------------------------------------------------------------------------
+∫b a f'(t)dt = f(b) - f(a)  -> total change frome t=a to t=b
+	f'(t):tells us r.o.c of f with t   dt:small time interval
+	amount of change @ time t
+	add up to find total change
+
+f(b) = f(a) + ∫b a f'(t)dt
+
+
+----------------------------------------------------------------------------
+
+@time t=2 I am 10ft from a wall
+moving backforth to the wall
+I also know s'(t) = 10 - 20*sint (ft/s)
+Question: What is s(10)?
+
+s(10) = s(2) + ∫10 2 s'(t)dt
+	  = 10 + ∫10 2(10 - 20*sint)dt
+	  = 10 + (10t + 20*cost)|10 2
+	  = 10 + 100 + 20cos10)-(20+20cost2)
+
+----------------------------------------------------------------------------
+v(t) = s'(t)
+∫b a v(t)dt = s(b) - s(a) Distance between start to end
+∫b a |v(t)|dt = Totaldistance
+
+v(t) = cost
+∫Pi 0 cos(t)dt = sin(t)|t=Pi t=0 
+		   	   = sinPi - sin0 = 0
+∫Pi 0 |cos(t)|dt = 2∫Pi/2 0 cos(t)dt 
+				 = 2sint|t=Pi/2 t=0
+				 = 2(sinPi/2)-2(sint0)
+				 = 2
+
+
+┏━━━━━┓
+┃Lecture21 ┃
+┗━━━━━┛
+Example:
+Volume of a sphere
+How much did the volume change?
+dV = SA*dr
+surface area
+dV = 4Pi r^2 dr
+   = 
+V(R) = V(0) + ∫R 0 dv
+	 = 0 + ∫R 0 4Pi r^2 dr
+	 = 4Pi ∫R 0 r^2 dr
+	 = 4Pi 1/3*r^3|R 0
+	 = 4/3 Pi R^3
+
+----------------------------------------------------------------------------
+
+chain rule						<--->		 substitution rule
+d/dx(f(g(x))) = f'(g(x))*g'(x)		∫f'(g(x))g'(x)dx = f(g(x)) + C
+
+∫cos(x^2)*2xdx = sin(x^2) + C
+g(x) = x^2
+g'(x) = 2x
+f(x) = cosx
+
+U-du substitution
+∫f(g(x))*g'(x)dx = ∫ f(u)du 
+u = g(x)
+du/dx = g'(x)  du = g'(x)dx
+
+∫cos(x^2)*2xdx = ∫cos(u)du = sin(u) + C = sin(x^2) + C
+u = x^2
+du = u'(x)*dx = 2xdx
+
+* Make sure to replace every x by somthing with u
+* Substitution is great when we have a function in a function
+* At the end don't forget to replace u by g(x)
+* Goal is always to make thing simple
+----------------------------------------------------------------------------
+
+∫(1+x^(1/2))^2 dx = ∫(1+ 2*x^(1/2) + x) dx = x + 4/3*x^(3/2) + 1/2*x^2 + C
+∫(1+x^(1/2))^100 dx = ∫u^100 *(2(u-1)du) = ∫ u^100*2(u-1) du = 2 ∫(u^101-u^100) du = 2*1/102*u^102 - 2*1/101*u^101 + C = 1/51*(1+x^(1/2))^102 - 1/101(1+x^(1/2))^101 + C
+u = 1+x^(1/2)
+du = 1/2*x^(-1/2) dx
+dx = 2x^(1/2)du = 2(u-1)du
+
+
+----------------------------------------------------------------------------
+∫(x^2 + 2x)/(x^3+3x^2+9)^2 dx
+u = x^3 + 3*x^2 + 9
+
+----------------------------------------------------------------------------
+∫ secx/(secx+tanx)^8 dx
+u = secx + tanx
+du = (secx*tanx + secx^2)dx = secx(tanx + secx)dx = secx*u dx
+secx*dx = 1/u*du
+
+----------------------------------------------------------------------------
+Definite intergals substitution
+Method(1) Do indefinite integral then FTC
+(2) Do definite intergals but make sure to update end point
+∫x=b x=a f(x)dx  = ∫x=b x=a f(g(x))*g'(x)dx = ∫u=g(b) u=g(a) f(u)du
+u = g(x)
+du = g'(x)dx
+
+----------------------------------------------------------------------------
+
+∫1 0 x/(1+x^4)dx = 1/2arctan(x^2)|x=1 x=0 = 1/2arctan(1) - 1/2arctan(0) = 1/2*Pi/4 - 1/2*0 = Pi/8
+∫ x/(1+x^4)dx = ∫ x/(1+(x^2)^2)dx = 1/2∫ du/(1+u^2) = 1/2*arctan u + C = 1/2*arctan(x^2)  + C
+u = x^2
+du = 2x dx
+x*dx = 1/2*du
+
+----------------------------------------------------------------------------
+∫Pi/2 0 cosx*(1-sinx^2)^(1/2) dx = ∫1 0 (1-u^2)*(1/2) du = Pi/4
+u = sinx
+du = cosx dx
+
+
+----------------------------------------------------------------------------
+if ∫f(x)dx = F(x) + C
+∫f(ax+b)dx = 1/a F(u) + c = 1/aF(ax+b) + c
+u = ax + b
+du = a dx
+1/a∫f(u) du = 1/a F(u) + c
+
+
+----------------------------------------------------------------------------
+∫(x+a)^(7/2) dx
+= 2/7*(x+a)^(7/2) + c
+
+∫sin(2x)dx = -1/2*cos(2x) + c
+

@@ -1,0 +1,210 @@
+人工智慧Artificial Intelligence
+于天立
+
+Artificial Intelligence A Modern Approach (3rd Edition)
+1-1 What is AI(i) - Acting Humanly, Thinking Humanly
+1. What is AI?
+		Human  Rational
+Think 	
+Act
+
+the textbook advocates acting rationally.
+
+
+Strong AI vs. Weak AI - John Searle
+Strong AI : A physicla symbol system can have a mind and mental states.
+Weak AI: A phisical symbol system can act intelligently.
+
+The textbook advocatres weak AI.
+
+Acting Humanly: Turing Test
+Turing 1950
+5分钟 30%
+
+1965 ELIZA
+2013 MITSUKU CHATBOT
+
+Involving:
+	Natural language processing
+	Knowledge representation
+	Automated reasoning
+	Machine learning
+
+
+----------------------------------------------------------------------------
+1-2 What is AI(i) - Thinking Rationally, Acting Rationally
+Thinking Humanly: Cognitive Modeling
+How to validate? Requires
+	top-down	:Predicting and testing behavior of human subjects  -- cognitive science
+	bottom-up	: Direct identification from neurological data		-- cognitive neuroscience
+
+Chinese Room Argument by John Searle
+Book of RULES
+So P is note sufficient for producing understanding of Chinese.
+So there is no program sufficient for producing understanding of Chinese.
+否决Strong AI的可能性
+
+取代神经元
+
+the main function of a human brain is to 
+Memorize and predict
+
+On Intelligence Jeff Hawkins
+
+----------------------------------------------------------------------------
+Thinking Rationaly: Laws of Thought
+A -> B
+NOT A -> B
+
+----------------------------------------------------------------------------
+Acting Rationally: Rational Agent
+An agent is an entity that perceives and acts.
+
+percept histories -> actions
+
+limited rationality
+
+
+----------------------------------------------------------------------------
+1-3 AI Prehistory and History, Current AI
+Foundations of AI
+Philosophy
+	logic, reasoning, learning, language, rationality
+Mathematics
+	formal representation of algorithms, decidability, tractability
+Economics
+	utility, decision theory
+Neuroscience
+	physicial substrate for mental activity
+Psychology
+	phenomena of perception and experimental techniques
+Computer engineering
+	building fast computers
+Control theory
+	design systems that maximize an objective function over time
+Linguistics
+	knowledge representation, grammar
+
+1943
+1950 Turing's computing machinery and inteligence
+1956 Dartmouth meeting: artificial intelligence
+1966-73 computational complexity
+		neural netwok
+1986	Return of neural networks
+2001 availability of large data sets 网络时代
+
+
+----------------------------------------------------------------------------
+State of the Art
+1997 DEEP BLUE  weak AI的胜利
+2000 Span Filtering
+2007 Robotic Vehicles
+2010 Speech Recognition : WATSON  defeated Jeopardy
+Robotic: ROBO-ONE, RoboCup
+
+----------------------------------------------------------------------------
+1-4 Agents and Environments, Rationality, PEAS
+Human agents 
+Robotic agents
+
+
+
+Agents and Environments
+sensors actuators 失真
+
+agent function
+| 失真	f : P* -> A
+| 		*:0 or 多个
+agent program is the implementaion of an agent function
+
+
+Vacuum Cleaner
+Percepts: Location and Contents,
+			e.g.[B, Dirty]
+Actions: Left, Right, Suck, NoOp.
+
+A Vacuum-Cleaner Agent
+P* -> A
+Percept Sequence 	Action
+
+Is it needed to list the state [A, clean],[A, clean]?
+Yes, because there are still some accidents that make the action "right" fail, or other unknown reasons to get[A, clean] again. For safety purpose, we need to list all possible states.
+
+----------------------------------------------------------------------------
+Rationality
+
+Performance measure  according to 
+	What one actually wants in the environment
+A rational agent maximizes the expected performance.
+Rational != Omniscience
+	Percepts may not supply all relevant information.
+Rational != Clairvoyant
+	Action outcomes maynote be as expected.
+Rational => information gathering, exploration, learning, autonomy.
+
+----------------------------------------------------------------------------
+PEAS
+task environment
+Agent Type		Performance measure			Environments 			Actuators 				Sensors
+Taxi driver		safety, destination,		Roads, pedestrians,		Steering, 				Accelerometers, 
+				profits,legality,comfort	customers				accelerator,brake,horn	camera, engine, sensors, GPS
+
+----------------------------------------------------------------------------
+1-5 Environment Types, Summary
+Environment Types
+				Chess	Poker	Taxi	Image analysis
+Obervability
+Agents
+Deterministic/stochastic
+Episodic/sequential
+Static/dynamic
+Discrete/continuous
+
+the real world is partially observable, stochastic, dequential, dynamic, continuous, multi-agent
+
+----------------------------------------------------------------------------
+Agent Types
+Four basic types in order of increasing generality
+1. Simple reflex agents
+	Vacuum Cleaner
+	condition-action rules
+	memory-less/state-less
+	P->A
+	Works only if the environment is fully observable.
+
+2. Model-based agents
+	condition-action rules
+	state + sensors
+	partical observability
+	internal states to model the world
+	best guess
+
+3. Goal-based agents
+	Instead of using condition-action rules, the agent uses goals to decide what action it does.
+	Search(bottom-up) and Planning(top-down)
+
+4. utility-based agents
+	Utility function: Happiness of the agent
+	Maximizing the expected utility.
+
+
+----------------------------------------------------------------------------
+Learning Agents
+Sensors 				Actuators
+		Performance element
+Critic	Learning element	Problem generator
+
+Learning from rewards(or penalty)
+Learning techniques form another field called machine learning.
+
+----------------------------------------------------------------------------
+Summary
+Strong vs. weak AI
+Agetns interact with environments through actuators and sensors.
+The agent function describes what the agent does in all circumstances.
+The performance measure evaluates the environment sequence.
+A perfetly rational agent maximizes expected performance.
+Agetn programs implemet (some) agent functions.
+PEAS descriptions define task environmetns.
+Different envrionment & agent types.
+all agents can improve their performances through learning.

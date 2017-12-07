@@ -1,0 +1,157 @@
+20171208_四六级营销广告
+https://pages.c-ctrip.com/creditcard/h5/20171208/ticket.html
+https://pages.c-ctrip.com/creditcard/h5/20171208/edm.html
+
+
+1.SVG?CANVAS?
+例如，SVG 绘图很容易编辑，只要从其描述中移除元素就行。
+要从同一图形的一个 <canvas> 标记中移除元素，往往需要擦掉绘图重新绘制它。
+
+https://github.com/exupero/saveSvgAsPng
+
+2.长按保存图片事件
+https://zhidao.baidu.com/question/489149123601190452.html
+长按事件
+
+3. canvas绘图
+M=2：放大canvas宽高2倍，由此生成的图片再适配屏幕，以此确保图像清晰度。
+缺陷：移动端保存data64图片，两侧被裁切了一小部分
+
+calculateSize4Canvas: function(){
+    SCREEN_WIDTH = $(window).get(0).innerWidth;
+    SCREEN_HEIGHT = $(window).get(0).innerHeight;
+    CANVAS_WIDTH = SCREEN_WIDTH*M;
+    if(SCREEN_WIDTH/SCREEN_HEIGHT> 750/1206) {
+        //canvas高度按设计图比例取值
+        CANVAS_HEIGHT = SCREEN_WIDTH*1206/750*M;
+    } else {
+        //canvas高度按屏幕高度取值
+        CANVAS_HEIGHT =SCREEN_HEIGHT*M;
+    }
+},
+calculateSize4Image: function(image){
+
+    SW =  $(image)[0].width;
+    FONTSIZE = 26/750*CANVAS_WIDTH;
+    SELF.$("#js_ios p").css('font-size', 11/750*CANVAS_WIDTH);
+    FONT_X = 406/750*CANVAS_WIDTH;
+    if(SCREEN_WIDTH/SCREEN_HEIGHT> 750/1206) {
+        SH = 1206/750*$(image)[0].width;
+        FONT_Y = 272/1206*CANVAS_HEIGHT;
+    } else {
+        SH = CANVAS_HEIGHT/CANVAS_WIDTH*$(image)[0].width;
+        FONT_Y = 272/1206*SCREEN_WIDTH*1206/750*M;
+    }
+},
+paintCanvas: function(canvas, context){
+        var canvas = $('#myCanvas');
+        var img = $('#registrationNo');
+        //触发window.resize时，将img DOM替换为canvas
+        // if(!canvas.length && img.length) {
+        //     var test = document.createElement("canvas");
+        //     canvas = $("<canvas id='myCanvas'></canvas>");
+        //     img.replaceWith(canvas);
+        // }
+        var context = canvas.get(0).getContext("2d");
+
+        SELF.calculateSize4Canvas();
+        SELF.resizeCanvas(canvas, context);
+
+        var image = new Image();
+        image.src = "./images/original_ticket.png";
+        $(image).load(function(){
+
+            SELF.calculateSize4Image(image)
+            context.drawImage(image, 0, 0, SW, SH, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+            var text = SELF.generateRegistrationNo();;
+            
+            context.fillStyle = "#878787";
+            context.font = FONTSIZE + "px Arial";
+            context.fillText(text, FONT_X, FONT_Y);
+
+            //用图片替换canvas元素
+            var dataURL = canvas.get(0).toDataURL("image/jpeg");
+            var img = $("<img id='registrationNo'></img>");
+            img.attr("src", dataURL);
+            canvas.replaceWith(img);
+
+        }); 
+    },
+resizeCanvas: function(canvas, context) {
+        canvas.attr("width", CANVAS_WIDTH);
+        canvas.attr("height", CANVAS_HEIGHT);
+        context.fillRect(0, 0, canvas.width(), canvas.height());    
+    },
+
+
+4.移动端音乐不能自动播放
+
+Overcoming iOS HTML5 audio limitations
+https://www.ibm.com/developerworks/library/wa-ioshtml5/index.html
+
+
+（1）微信端：
+
+网页获取用户网络状态
+http://qydev.weixin.qq.com/wiki/index.php?title=WeixinJS%E6%8E%A5%E5%8F%A3&oldid=287#.E7.BD.91.E9.A1.B5.E8.8E.B7.E5.8F.96.E7.94.A8.E6.88.B7.E7.BD.91.E7.BB.9C.E7.8A.B6.E6.80.81
+
+autoPlayInWeixin: function() {
+            var audio = $('#myAudio').get(0);
+            if (typeof WeixinJSBridge == "undefined") {
+                $(document).on('WeixinJSBridgeReady', function(){
+                    audio.play();
+                })
+            } else if(typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+                WeixinJSBridge.invoke('getNetworkType', {}, function (res) {
+                    // 在这里拿到 res.err_msg, 这里面就包含了所有的网络类型
+                    // alert(JSON.stringify(res.err_msg));
+                    audio.play();
+                });
+            }
+        }
+
+if (typeof WeixinJSBridge == "undefined"){
+    if( document.addEventListener ){
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }else if (document.attachEvent){
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+}else{
+	WeixinJSBridge.invoke('getNetworkType',{},
+ 		function(e){
+ 	    	WeixinJSBridge.log(e.err_msg);
+ 	    });
+}
+
+微信所有JS接口列表
+http://qydev.weixin.qq.com/wiki/index.php?title=%E5%BE%AE%E4%BF%A1JS-SDK%E6%8E%A5%E5%8F%A3#.E9.99.84.E5.BD.953-.E6.89.80.E6.9C.89JS.E6.8E.A5.E5.8F.A3.E5.88.97.E8.A1.A8
+
+scanQRCode
+
+
+微信长按识别二维码的机制是什么？
+
+微信识别二维码采用的逻辑是截屏识别，当客户端发现用户在网页的img标签内进行长按操作时，会立刻截屏并且启动二维码识别算法。所以这里用于二维码识别的图片是截屏，而不是之前有人提到的img标签中的图片。  为什么要用截屏，这也是一个开发时候的思考。客户端截屏时候，可以不用考虑网络传输等因素，最快的得到识别结果，否则就需要走一次图片下载的逻辑，用户长按后等待的时间会加长，体验上也失去了快感。当然，这也带来了识别不出的问题（所以正在考虑先截屏，截屏识别失败再下载的新逻辑）。”
+
+作者：赵飞
+链接：https://www.zhihu.com/question/29016999/answer/222890979
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+http://mp.weixin.qq.com/s?__biz=NzA3OTQ2OTgw&mid=205918916&idx=1&sn=d729ef70ea1e7fc50e649352a63a2564&scene=1&key=c76941211a49ab586ba4831f2f6fa42fbb2525460003fa8e19bc205b9b25facbf60da78977da071ddbc41a5be6a7b9fa&ascene=0&uin=NTE3ODg0NjE1&devicetype=iMac%20MacBookPro12,1%20OSX%20OSX%2010.10.3%20build%2814D136%29&version=11020012&pass_ticket=WPa8XnvIzBrBOA6RHy2RMECcrsuN2QiksK8Y1Z/D3Odk49uIsXOex7EV2NXN9m5X
+
+（2）其他环境（浏览器、app）
+$('html').one('touchstart', SELF.autoPlayAudio);
+autoPlayAudio: function(){
+            var audio = $('#myAudio').get(0);
+            if(audio) audio.play();
+        },
+
+5. 草料二维码生成器
+
+6.edm图片绝对路径
+http://www.jianshu.com/p/0e10a6b66eee
+EDM制作总结

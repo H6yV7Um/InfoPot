@@ -135,10 +135,18 @@ context.fillRect(40, 40, 100, 100);
 globalCompositeOperation支持的11种合成类型：
 
 ----------------------------------------------------------------------------
-100
+page100
 将画布导出为图像
 toDataURL：将画布绘图转换为一个数据URL
 Firefox浏览器本身支持右键单击canvas元素，并另存为图像。它所使用的方法与在代码中使用toDataURL是完全相同的。
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL
+canvas.toDataURL(type, encoderOptions);
+type："image/jpeg"，"image/png"
+encoderOptions: 0.0-1.0
+
+可以使用 type 参数其类型，默认为 PNG 格式。图片的分辨率为96dpi。
+
 
 context.save();
 context.fillRect(50, 50, 100, 100);
@@ -162,12 +170,17 @@ canvas.replaceWith(img);  //使用jQuery的replaceWith方法将canvas元素替�
 注意：base64数据比它表示的原始二进制图像数据大50%。
 
 ----------------------------------------------------------------------------
-加载图像
-context.drawImage(image, x, y);
-参数image可以是：HTML img元素，HTML canvas元素，HTML5 video元素
+
 
 drawImage的两种调用方式：
 1.将完整尺寸的图像会知道画布上
+
+加载图像
+context.drawImage(image, x, y);
+参数image可以是：HTML img元素，HTML canvas元素，HTML5 video元素
+绘制图像的原点(x,y)坐标值
+
+
 var image = new Image();
 image.src = "./images/test.png";
 $(image).load(function(){
@@ -176,6 +189,52 @@ $(image).load(function(){
 load事件只有当所有内容（包括图像）完成加载之后才会触发
 直接将jQuery的load方法赋给图像对象，就可以保证我们只需要等待这个图像的加载完成，而不需要等待其他内容的加载
 
+2.调整和裁剪图像
+context.drawImage(image, x, y, width, height);
+希望绘制的图像宽度和高度
+
+context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
+源图像
+原图像的裁剪区原点坐标(x,y)、源图像的裁剪区宽度和高度
+在画布（目标）上绘制图像的原点坐标(x,y)、在画布上绘制图像的宽度和高度
+
 ----------------------------------------------------------------------------
-调整和裁剪图像
+page128
+HTML5 video API
+
+
+
+
+----------------------------------------------------------------------------
+page224
+
+
+
+
+----------------------------------------------------------------------------
+page7
+媒体元素：audio video canvas
+audio元素最强大的地方是它不需要在页面上呈现就能够使用。
+浏览器采用了5种音频编解码器
+MP3 OGG
+实现跨浏览器HTML5音频支持的最佳方法使针对两种以上的编解码器提供不同的音频源
+<audio controls>
+	<soruce src="http://yourwebsite.com/sound.ogg">
+	<soruce src="http://yourwebsite.com/sound.mpg3">
+</audio>
+
+<audio src="http://yourwebsite.com/sound.ogg" controls loop preload="auto" autoplay>
+	<!-- 在此插入后备音频内容，比如Flash播放器 -->
+</audio>
+loop:注意不同浏览器实现方式不同
+preload:如何预加载
+autoplay:浏览器加载完成时自动播放音频内容
+
+<audio id="xxx" loop>
+	<soruce src="http://yourwebsite.com/sound.ogg">
+	<soruce src="http://yourwebsite.com/sound.mpg3">
+</audio>
+
+
+
 

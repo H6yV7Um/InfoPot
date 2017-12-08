@@ -1,6 +1,10 @@
 人工智慧Artificial Intelligence
 于天立
 
+tianliyu@ntu.edu.tw
+┏━━━━┓
+┃Week 1  ┃
+┗━━━━┛
 Artificial Intelligence A Modern Approach (3rd Edition)
 1-1 What is AI(i) - Acting Humanly, Thinking Humanly
 1. What is AI?
@@ -208,3 +212,290 @@ Agetn programs implemet (some) agent functions.
 PEAS descriptions define task environmetns.
 Different envrionment & agent types.
 all agents can improve their performances through learning.
+
+
+┏━━━━┓
+┃Week 2  ┃
+┗━━━━┛
+Outline:
+1. Problem-Solving Agents
+2. Problem Formulation
+3. Search on Trees and Graphs
+	state重复侦测 无 有 （记忆体限制）
+4. Uninformed Search
+	Breadth-First
+	Uniform-Cost
+	Depth-First
+	Depth-Limited
+	Iterative Deepening
+	Bidirectional
+
+
+----------------------------------------------------------------------------
+2-1 Problem Solving Agents, Problem Formulation(i)
+Solving Problems by Uninformed Searching
+AIMA Section 3.1~3.4
+
+Problem-Solving Agents
+sequence of actions
+
+
+
+----------------------------------------------------------------------------
+Example: Taipei MRT Map
+Formulate goal: Be in Taipei main Station
+Formulate problem
+	Sates:
+	Actions:
+Find solution:
+
+
+
+----------------------------------------------------------------------------
+Problem Formulation
+A problem is defined by five components:
+
+state:In(Guting)
+action:GO(Dongmeng)
+
+1 Initial state
+	In(Guting)
+2 Actions:
+	ACTION(input: state)  =	output: set of actions
+	GO(Dongmeng)
+3 Transition model 
+	RESULT(state, action) = state
+	f:S*A ->S
+  Successor 集合
+  	S(state) = set of state
+4 Goal test: set of states
+5 Path cost
+	step cost(一个action)
+	c(state, action, state')
+
+
+A solution is [a sequence of actions] leading from the initial state to a goal state.
+
+
+----------------------------------------------------------------------------
+2-2 Problem Formuulation (ii) - Abstraction
+抽象化
+(Abstract) state = subset of real states
+(Abstract) action = complex combination of real actions
+	For guaranteed realizability , [any] real state "in Guting" must get to [some] real state "in Dongmen"
+(Abstract) solution = set of real paths that are solutions in the real world
+
+Example: Vacuum World State Space Graph
+
+
+Example: The 8-puzzle
+空格往右移
+Note: Sliding-block puzzle is NP-hard
+
+Example: 8-Queen Puzzle
+
+
+----------------------------------------------------------------------------
+2-3 Search on Tree and Graph
+Tree Search Algorithms
+expanding states
+
+frontier  initial state
+----------------------------------------------------------------------------
+
+Repeated States in Graph Search
+
+Use a [queue] to record explored states.
+For fast detectionof repeated states, [hashing] techniques are usually adopted.
+2^n
+
+
+----------------------------------------------------------------------------
+Graph Search Alogrithms
+explored set
+add the node to the explored set
+if not in the frontier or explored set
+----------------------------------------------------------------------------
+Partial Search Tree
+
+----------------------------------------------------------------------------
+Graph Search , Search Tree, and Grontier Separation
+The frontier [separates] the state space into explored and unexplored regions(loop invariant proof)
+
+
+----------------------------------------------------------------------------
+Implementation : States vs. Nodes
+node: parent, children, depth, path cost g(x)
+
+
+----------------------------------------------------------------------------
+Infrastructure for Search Algorithms
+s' = n.state = problem.RESULT(aprent, state, action)
+
+queue:
+FIFO
+LIFO(stack)
+Priority queue(heap)
+----------------------------------------------------------------------------
+Tree Search Algorithms
+frontier -> node
+
+Strategies are evaluated along the following dimensions:
+	Completeness 有goal一定会给你	Optimality
+	Time complexity
+	Space complexity
+
+b: maximum branching factor of the search tree
+d: depth of the least-cost solution
+m: maximum depth of the state space (may be infinite)	
+
+----------------------------------------------------------------------------
+2-4 Uniformed Search(i) - Breadth-Frist Search, Uniform-Cost Search
+Uninformed Search Strategies(Blind Search)
+
+	Breadth-First
+	Uniform-Cost
+	Depth-First
+	Depth-Limited
+	Iterative Deepening
+
+----------------------------------------------------------------------------
+Breadth-First Search(BFS) 是 Uniform-cost的一个特例
+Expand the shallowest unexpanded node
+FIFO queue(管道)
+
+----------------------------------------------------------------------------
+Properties of BFS
+Completeness: 		Yes(if b is finite)
+Optimality: 		Yes only if the path cost is a non-decreasing funciton of the depth of the node; not optimal in general
+Time complexity:	1 + b + b^2 + ... + b^d = O(b^d) or O(b^(d+1)) if goal test is applied afer expansion
+Space complexity:	O(b^d)
+
+Space is the big problem; can easily generate nodes at 100MB/sec so 24hrs = 8640GB
+10^8 Bytes
+
+
+----------------------------------------------------------------------------
+Uniform-Cost
+Expand the unexpanded node with the lowest path cost
+Equivalent to BFS if step costs all equal
+Priority queue ordered by g(n)
+
+For TREE-SEARCH, priority queue gives the cheapest path first.
+For GRAPH-SEARCH, if the node is already in the frontier, need to find the minimum cost, and cll DECREASEKEY as needed.
+
+
+----------------------------------------------------------------------------
+Properties of Uniform-cost Search
+Completeness: 		Yes, if step cost >= e > 0
+Optimality: 		Yes, nodes expanded in increasing order of g(n)
+Time complexity:	# of nodes with g <= cost of optimal solution. Maximum depth is given by 1 + [C*/e], where C* is the cost of the optimal solution. O(b^(1+[C^*/e]))
+Space complexity:	# of nodes with g <= cost of optimal soluton. O(b^(1+[C^*/e]))
+
+----------------------------------------------------------------------------
+2-5 Uninformed Search (ii)- Depth-First Search, Depth-Limited Search, Iterative-Deepending Search
+
+Depth-First Search (DFS)
+Expand the [deepest] unexpanded node
+LIFO queue(stack脸盆), i.e., put successors at front
+
+
+----------------------------------------------------------------------------
+Properties of DFS
+
+Completeness: 		No, fails in infinite-depth spaces, spaces with loops
+	Modify to avoid repeated states along path-> complete in finite spaces
+Optimality: 		No
+Time complexity:	O(b^m) (m是最深最深的位置)
+Space complexity:	O(bm), linear space!
+	successors->O(m)
+
+
+----------------------------------------------------------------------------
+Depth-Limited Search(DLS)
+DFS never terminates if m->infinite
+DLS = DFS with depth limit l
+Nodes at depth l have no successors
+Recursive implementation
+
+
+
+----------------------------------------------------------------------------
+Properties of DLS
+
+Completeness: 		Not complete if l < d; complete otherwise
+Optimality: 		Not optimal in general (even if l > d)
+Time complexity:	O(b^l)
+Space complexity:	O(bl), linear space!
+
+
+----------------------------------------------------------------------------
+Iterative-Deepending Search(IDS)
+Call DLS iteratively with increasing depth limit
+combien the benefits of BFS and DFS
+
+
+for depth = 0 to infinite
+	result = DEPTH-LIMITED-SEARCH()
+
+----------------------------------------------------------------------------
+2-6 Uninformed Search(iii) - Iterative-Deepening Search, Bidirectional Search
+Properties of Iterative Deepening Search
+
+Completeness: 		Yes
+Optimality: 		Yes only if step cost = 1
+	Can be modified to explore uniform-cost tree(optimal)
+Time complexity:	db^1 + (d-1)b^2 + ... + b^d = O(b^d)
+Space complexity:	O(bd)
+
+
+b=10 d=5
+(b+1)/b 差别
+
+In general, IDS is prefered when search space is large and depth is unknown.
+more advantages of IDS in adversarial search
+
+
+If we change all step costs to 2 in IDS, is the optimality guaranteed?
+Yes???
+
+----------------------------------------------------------------------------
+Bidirectional Search
+Reduce the time complexity from O(b^d) to O(b^(d/2))
+Need PREDECESSORS and known GOAL
+Also, the space complexity increases to O(b^(d/2)) as well, can be problematic.
+
+
+
+
+----------------------------------------------------------------------------
+Summary of Algorithms
+
+----------------------------------------------------------------------------
+Summary
+Problem formulation usually requires abstracting away real-world detaisl to define a state space that can feasibly be explored.
+	Initial state
+	Actions
+	Transition model
+	Goal test
+	Path cost
+Graph search can be exponentially more efficient than tree serch
+Variety of uninformed search strategires judged on the bais of 
+	completeness
+	optimality
+	time and space complexity
+Iterative deepening search uses only linear space and not much more time than otehr uninformed algorithms.
+
+┏━━━━┓
+┃Week 3  ┃
+┗━━━━┛
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------

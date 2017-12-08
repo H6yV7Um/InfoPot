@@ -15,8 +15,7 @@ Multivariable Calculus | UC Berkeley ：
 playlist?list=PLiDh_aMfNpJyLtgPsMQUbzsTgrYHWsw2b
 Calculus III: Multivariable Calculus | Princeton ：
 playlist?list=PLiDh_aMfNpJy7oapc2UGzEStgLOs1WmsA
-Linear Algebra | Princeton University ：
-playlist?list=PLiDh_aMfNpJwSR8GtEXNaXahmNS8G9yXs
+
 Probability for Life Science | UCLA ：
 playlist?list=PLF4631DC2DF29E840UCIrvineOCW（ 加州大学尔湾分校。微积分1[ 预备课 ]、微积分2A,2B、概统131A,131B ）：
 user/UCIrvineOCW/playlists ，可以在官网看：http://ocw.uci.eduProfessor Leonard（ 不知道学校。微积分1,2、统计、初等代数[ Prealgebra ]、中级代数[ Intermediate Algebra ] ）：user/professorleonard57/playlists
@@ -1781,12 +1780,71 @@ Pi*(R+dR)^2-Pi*R^2
 ┏━━━━━┓
 ┃Lecture24 ┃
 ┗━━━━━┛
+Applications of integration
+* Cumulative change ∫b a f'(t)dt = f(b) - f(a)
+* Area  f(x) >= g(x) on a<=x<=b Area = ∫b a (f(x)-g(x))dx
+* Volume A(y)= area at cross section Volume = ∫b a A(y)dy
+* Linear density (of a rod)  Mass = ∫b a p(x)dx                 
+* radial density (population) = 2Pi∫b a p(r)dr 
+	p(r) density from the center
+
+
 ----------------------------------------------------------------------------
+Average
+y=f(x)
+What is the average of f(x) for a<=x<=b?
+Pick N equally spaced pots?
+delta x
+			N
+lim 		(1/N ∑ f(a+i*delta x)) = lim ( ∑ (1/(b-a))*f(a+i*delta x)(b-a)/N) = 1/(b-a)∫b a f(x)dx = favg
+N->infinite i=1
+Riemann Sum
+
+
+
 ----------------------------------------------------------------------------
+Find average value of f(x)=x^2 on 1<=x<=4
+1/(4-1)*∫4 1 x^2dx = 1/3*(1/3*x^3)|4 1 = 7
+y=x^2 x^2=7 x=7^(1/2)
+
+
 ----------------------------------------------------------------------------
+Mean Value Theorem
+If f(x) is continuous on a<=x<=b 
+then there is a point a<=c<=b
+so that f(c)=1/(b-a)∫b a f(x)dx = f[avg]
+
+F(x) be anti-derivative of f(x)
+F'(c) = (F(b)-F(a))/(b-a)
+
+
 ----------------------------------------------------------------------------
+Q: How do I find this volume?
+Annulus(Washers)
+Volume of slice = (Pi*R^2-Pi*r^2)d·
+total volume = Pi∫b a(R^2-r^2)d· = Pi∫b a ((outer radius)^2 - (inner radius)^2)d·
+y=f(x)  y=g(x)
+f(x)>=g(x)>=0
+V = Pi∫b a (f(x)^2-g(x)^2)dx
 ----------------------------------------------------------------------------
+
+x^2+y^2=r^2
+y=(r^2-x^2)^(1/2)
+V=Pi ∫r -r (((r^2-x^2)^(1/2))^2-0^2)dx
+ =Pi ∫r -r (r^2-x^2)dx
+ =Pi(r^2*x-1/3*x^(1/3))|r -r
+ =4/3Pi*r^3
+
+
+
+
+
 ----------------------------------------------------------------------------
+0<=y=sinx
+0<=x<=Pi
+
+Volume = Pi∫Pi 0 (sinx)^2*dx = Pi∫Pi 0 ((1-cos2x)/2)dx = 1/2*Pi*(x - 1/2*sin(2x))|Pi 0 = 1/2Pi^2
+
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------

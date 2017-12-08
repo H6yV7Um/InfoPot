@@ -155,3 +155,6 @@ autoPlayAudio: function(){
 6.edm图片绝对路径
 http://www.jianshu.com/p/0e10a6b66eee
 EDM制作总结
+
+7. 华为 uc和qq不支持  var date = new Date();   var t = date.toLocaleDateString() 方法
+8. 华为 uc js 缓存很强

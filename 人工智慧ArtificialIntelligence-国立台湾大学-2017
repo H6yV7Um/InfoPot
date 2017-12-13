@@ -354,7 +354,7 @@ m: maximum depth of the state space (may be infinite)
 Uninformed Search Strategies(Blind Search)
 
 	Breadth-First
-	Uniform-Cost
+	Uniform-Cost   f(n)=g(n)
 	Depth-First
 	Depth-Limited
 	Iterative Deepening
@@ -387,7 +387,7 @@ For GRAPH-SEARCH, if the node is already in the frontier, need to find the minim
 
 ----------------------------------------------------------------------------
 Properties of Uniform-cost Search
-Completeness: 		Yes, if step cost >= e > 0
+Completeness: 		Yes, if step cost即c(s,a,s') >= e > 0 走够久
 Optimality: 		Yes, nodes expanded in increasing order of g(n)
 Time complexity:	# of nodes with g <= cost of optimal solution. Maximum depth is given by 1 + [C*/e], where C* is the cost of the optimal solution. O(b^(1+[C^*/e]))
 Space complexity:	# of nodes with g <= cost of optimal soluton. O(b^(1+[C^*/e]))
@@ -489,6 +489,22 @@ Iterative deepening search uses only linear space and not much more time than ot
 ┏━━━━┓
 ┃Week 3  ┃
 ┗━━━━┛
+重点  A* search
+
+heuristic = evaluation function
+n=state,node
+h(n)
+greedy: f(n) = h(n) 预估值
+uniform-cost: f(n) = g(n) 实际发生的cost
+A* = greedy + uniform-cost
+
+
+h* 完美的估计函数
+保证search最佳optimality的充分但不必要条件
+tree: admissible
+graph: admissible + consistent
+
+
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
 

@@ -1,0 +1,762 @@
+<html>
+
+<head>
+    <title>小小运动馆</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="description" content="小小运动馆">
+    <meta name="format-detection" content="telephone=no">
+    <style>
+
+    </style>
+</head>
+
+<body>
+	<div id="app">
+		<table cellspacing="1">
+	        <tbody>
+	            <tr>
+	                <th>
+	                    加盟城市
+	                </th>
+	                <th>
+	                    样本
+	                </th>
+	                <th>
+	                    一线城市（以北京为例）
+	                </th>
+	                <th>
+	                    二线城市（以南京为例）
+	                </th>
+	                <th>
+	                    三线城市（以常州为例）
+	                </th>
+	            </tr>
+	            <tr>
+	                <td>
+	                    店铺面积
+	                </td>
+	                <td>
+	                    <input type="text" v-model="investmentBig.area">
+	                </td>
+	                <td>
+	                    300㎡
+	                </td>
+	                <td>
+	                    250㎡
+	                </td>
+	                <td>
+	                    200㎡
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    房租费用
+	                </td>
+	                <td>
+	                    <input type="text" v-model="investmentBig.rent">
+	                </td>
+	                <td>
+	                    9.6万元/月
+	                </td>
+	                <td>
+	                    6.25万元/月
+	                </td>
+	                <td>
+	                    4.4万元/月
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    装修费用
+	                </td>
+	                <td>
+	                    <input type="text" v-model="investmentBig.decoration">
+	                </td>
+	                <td>
+	                    800元/㎡
+	                </td>
+	                <td>
+	                    700元/㎡
+	                </td>
+	                <td>
+	                    600元/㎡
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                </td>
+	                <td style="text-align: right;">
+	                    {{sumDecoration/10000}}万元
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    设备费用
+	                </td>
+	                <td>
+	                    <input type="text" v-model="investmentBig.equipment">
+	                </td>
+	                <td>
+	                    10万元
+	                </td>
+	                <td>
+	                    8万元
+	                </td>
+	                <td>
+	                    6万元
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    广告宣传费用
+	                </td>
+	                <td>
+	                    <input type="text" v-model="investmentBig.advertise">
+	                </td>
+	                <td>
+	                    8000元
+	                </td>
+	                <td>
+	                    6000元
+	                </td>
+	                <td>
+	                    4000元
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    开业费用
+	                </td>
+	                <td>
+	                    <input type="text" v-model="investmentBig.opening">
+	                </td>
+	                <td>
+	                    5000元
+	                </td>
+	                <td>
+	                    4000元
+	                </td>
+	                <td>
+	                    3000元
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    摊销年限
+	                </td>
+	                <td>
+	                    <input type="text" v-model="investmentBig.amortizationPeriod">
+	                </td>
+	                <td>
+	                    5000元
+	                </td>
+	                <td>
+	                    4000元
+	                </td>
+	                <td>
+	                    3000元
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    固定成本按月摊销
+	                </td>
+	                <td>
+	                	{{monthlyCost4FixedCost}}元
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	            </tr>
+	            <tr style="background: gray;color:#fff;">
+	                <td>
+	                    固定成本
+	                </td>
+	                <td>
+	                	{{fixedCost/10000}}万元
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	            </tr>
+	            
+
+	            <tr>
+	                <td>
+	                    人员工资
+	                </td>
+	                <td>
+	                    <input type="text" v-model="investmentBig.salary">
+	                </td>
+	                <td>
+	                    3500元/月/人(6人)
+	                </td>
+	                <td>
+	                    3000元/月/人(5人)
+	                </td>
+	                <td>
+	                    2500元/月/人(4人)
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    人员数
+	                </td>
+	                <td>
+	                    <input type="text" v-model="investmentBig.staff">
+	                </td>
+	                <td>
+	                    6人
+	                </td>
+	                <td>
+	                    5人
+	                </td>
+	                <td>
+	                    4人
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                </td>
+	                <td style="text-align: right;">
+	                    {{sumSalary/10000}}万元
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    水电杂费
+	                </td>
+	                <td>
+	                    <input type="text" v-model="investmentBig.utilities">
+	                </td>
+	                <td>
+	                    2000元/月
+	                </td>
+	                <td>
+	                    1800元/月
+	                </td>
+	                <td>
+	                    1500元/月
+	                </td>
+	            </tr>
+	            <tr style="background: gray;color:#fff;">
+	                <td>
+	                    可变成本
+	                </td>
+	                <td>
+	                	{{variableCost/10000}}万元
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	            </tr>
+	            <tr style="background: gray;color:#fff;">
+	                <td>
+	                    月成本
+	                </td>
+	                <td>
+	                	{{monthlyCost/10000}}万元
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	                <td>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    流动资金
+	                </td>
+	                <td>
+	                    <input type="text" v-model="investmentBig.cash">
+	                </td>
+	                <td>
+	                    35万元
+	                </td>
+	                <td>
+	                    23万元
+	                </td>
+	                <td>
+	                    16万元
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    总投资费用
+	                </td>
+	                <td style="color:red;">
+	                	{{totalInvestment}}
+	                </td>
+	                <td>
+	                    82.2万元
+	                </td>
+	                <td>
+	                    57.43万元
+	                </td>
+	                <td>
+	                    40.25万元
+	                </td>
+	            </tr>
+	            <tr>
+	                <td colspan="4">
+	                    以上投资费用为预估，可能会与实际情况有所差别，仅供参考。
+	                </td>
+	            </tr>
+	        </tbody>
+    	</table>
+		<table cellspacing="1">
+	        <tbody>
+	            <tr>
+	                <th>
+	                    
+	                </th>
+	                <th>
+	                    样本
+	                </th>
+	                <th>
+	                    单位
+	                </th>
+	            </tr>
+	            <tr>
+	                <td>
+	                    招生人数
+	                </td>
+	                <td>
+	                    <input type="text" v-model="income.children">
+	                </td>
+	                <td>
+	                    人/月
+	                </td>
+	                <td>
+	                    {{expectationChildren}}人/月
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                    人均学费
+	                </td>
+	                <td>
+	                    <input type="text" v-model="income.tuition">
+	                </td>
+	                <td>
+	                    元/人/年
+	                </td>
+	            </tr>
+	            <tr  style="background: gray;color:#fff;">
+	                <td>
+	                    学费收入月均摊
+	                </td>
+	                <td>
+	                    {{monthlyIncome4Tuition}}
+	                </td>
+	                <td>
+	                    元/月
+	                </td>
+	            </tr>
+	        </tbody>
+    	</table>
+		<table cellspacing="1">
+	        <tbody>
+	            <tr>
+	                <th>
+	                    
+	                </th>
+	                <th>
+	                    样本
+	                </th>
+	                <th>
+	                    单位
+	                </th>
+	            </tr>
+	            <tr>
+	                <td>
+	                    月利润
+	                </td>
+	                <td>
+	                    {{monthlyProfit}}
+	                </td>
+	                <td>
+	                    元/月
+	                </td>
+	                <td>
+	                    <input type="text" v-model="expectation.monthlyProfit"> 元/月
+	                </td>
+	            </tr>
+	        </tbody>
+    	</table>
+    	<table cellspacing="1">
+	        <tbody>
+	            <tr>
+	            	<th></th>
+	                <th v-for="n in 12">
+	                    {{n}}
+	                </th>
+	            </tr>
+	            <tr v-for="(item,index) in simulation">
+	                <td>
+	                    {{keyname[index]}}
+	                </td>
+	                <td v-for="data in item">
+	                    {{data}}
+	                </td>
+	            </tr>
+	        </tbody>
+    	</table>
+    	<table cellspacing="1" style="margin-top: 20px;">
+    	<thead>
+    		<tr>
+    			<td>员工表</td>
+    		</tr>
+    	</thead>
+	        <tbody>
+	            <tr>
+	            	<th></th>
+	                <th v-for="n in 12">
+	                    {{n}}
+	                </th>
+	            </tr>
+	            <tr v-for="(item,index) in staffTable">
+	                <td>
+	                    {{index+1}}
+	                </td>
+	                <td v-for="(data,key) in item">
+	                    <!-- {{data}} -->
+	                    <input type="text" v-model="staffTable[index][key]">
+	                </td>
+	            </tr>
+	            <tr>
+	            	<td>
+	            		合计薪资
+	            	</td>
+	            	<td v-for="data in totalStaffSalary">
+	            		{{data}}
+	            	</td>
+	            </tr>
+	        </tbody>
+    	</table>
+    	<table cellspacing="1" style="margin-top: 20px;">
+    	<thead>
+    		<tr>
+    			<td>学员表</td>
+    		</tr>
+    	</thead>
+	        <tbody>
+	            <tr>
+	            	<th></th>
+	                <th v-for="n in 12">
+	                    {{n}}
+	                </th>
+	            </tr>
+	            <tr>
+	            	<td>
+	            		合计人数
+	            	</td>
+	            	<td v-for="(data,index) in totalTution" style="text-align: center;">
+	            		{{monthlyChildren[index]}}
+	            	</td>
+	            </tr>
+	            <tr v-for="(item,index) in childrenTable">
+	                <td>
+	                    {{index+1}}
+	                </td>
+	                <td v-for="(data,key) in item">
+	                    <!-- {{data}} -->
+	                    <input type="text" v-model="childrenTable[index][key]">
+	                </td>
+	            </tr>
+	            <tr>
+	            	<td>
+	            		合计学费
+	            	</td>
+	            	<td v-for="data in totalTution">
+	            		{{data}}
+	            	</td>
+	            </tr>
+	            
+	            
+	        </tbody>
+    	</table>
+
+	</div>
+    
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
+    <script src="https://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+    <script type="text/javascript">
+    var SIMULATEPERIOD = 12;
+    var STAFFTABLE = (function(){
+		var obj = [];
+		
+			for(var headcount = 0; headcount < 6; headcount++) {
+				obj[headcount] = [];
+				for(var i = 0; i < SIMULATEPERIOD; i ++) {
+					obj[headcount].push(3500);
+				}
+			}
+		return obj
+	}());
+	var MAXMONTHLYCHILDREN = 30;
+    var monthlyChildren = [
+    	30,30,30,30,30,30,30,30,30,30,30,30
+    ];
+    var count = [];
+    for(var i = 0; i < MAXMONTHLYCHILDREN; i ++) {
+    	count.push(0)
+    }
+    var CHILDRENTABLE = (function(){
+		var obj = [];
+		
+			for(var headcount = 0; headcount < MAXMONTHLYCHILDREN; headcount++) {
+				obj[headcount] = [];
+
+				for(var j = 0; j < SIMULATEPERIOD; j ++) {
+					obj[headcount].push(count[j]< monthlyChildren[j] ? 8000 : 0);
+					count[j]++;
+				}
+			}
+		return obj
+	}());
+
+    var app = new Vue({
+    	el: '#app',
+    	data: {
+    		staffTable: STAFFTABLE,
+    		childrenTable: CHILDRENTABLE,
+    		investmentBig: {
+    			area: 300,
+	    		rent: 9.6,
+	    		decoration: 800,
+	    		equipment: 10,
+	    		advertise: 8000,
+	    		opening: 5000,
+	    		salary: 3500,
+	    		staff: 6,
+	    		utilities: 2000,
+	    		cash: 35,
+	    		amortizationPeriod: 5
+    		},
+    		income: {
+    			children: 50,
+    			tuition: 8000
+    		},
+    		expectation: {
+    			monthlyProfit: 10000
+    		},
+    		
+    		keyname: {
+	    		rent: '房租费用',
+	    		decoration: '装修费用',
+	    		equipment: '设备费用',
+	    		advertise: '广告宣传费用',
+	    		opening: '开业费用',
+	    		salary: '人员工资',
+	    		staff: '人员数',
+	    		utilities: '水电杂费',
+	    		cash: '流动资金',
+	    		amortizationPeriod: '摊销年限',
+	    		totalCost: '合计支出',
+	    		staffName: '姓名',
+	    		staffSalary:'薪资',
+	    		totalStaffSalary: '合计薪资',
+	    		totalTution: '合计学费',
+	    		totalProfit: '合计利润',
+	    		accumulatedProfit: '累计利润'
+    		},
+    		simulatePeriod: SIMULATEPERIOD,//个月
+
+    	},
+    	computed: {
+    		investment: function(){
+    			return{
+	    			area: this.investmentBig.area,
+		    		rent: this.investmentBig.rent*10000,
+		    		decoration: this.investmentBig.decoration,
+		    		equipment: this.investmentBig.equipment*10000,
+		    		advertise: this.investmentBig.advertise,
+		    		opening: this.investmentBig.opening,
+		    		salary: this.investmentBig.salary,
+		    		staff: this.investmentBig.staff,
+		    		utilities: this.investmentBig.utilities,
+		    		cash: this.investmentBig.cash*10000,
+		    		amortizationPeriod: this.investmentBig.amortizationPeriod,
+	    		} 
+    		},
+    		sumDecoration: function() {
+    			return this.investment.decoration*this.investment.area;
+    		},
+    		sumSalary: function(){
+    			return this.investment.salary*this.investment.staff;
+    		},
+    		fixedCost: function(){
+    			return this.investment.rent + this.sumDecoration + this.investment.equipment + this.investment.advertise*1 + this.investment.opening*1;
+    		},
+    		variableCost: function(){
+    			return this.sumSalary + this.investment.utilities*1 ;
+    		},
+    		monthlyCost4FixedCost: function(){
+    			return (this.sumDecoration + this.investment.equipment + this.investment.advertise*1 + this.investment.opening*1)/this.investment.amortizationPeriod/12 + this.investment.rent;
+    		},
+    		monthlyIncome4Tuition: function(){
+    			var t = this.income.children*this.income.tuition/12;
+    			return t;
+    		},
+    		monthlyIncome: function(){
+    			return this.monthlyIncome4Tuition;
+    		},
+    		monthlyCost: function(){
+    			return this.monthlyCost4FixedCost + this.variableCost;
+    		},
+    		monthlyProfit: function(){
+    			return this.monthlyIncome - this.monthlyCost;
+    		},
+    		totalInvestment: function(){
+    			var t = this.fixedCost + this.variableCost + this.investment.cash;
+    			return t/10000;
+    		},
+    		expectationChildren: function(){
+    			return (this.expectation.monthlyProfit*1 + this.monthlyCost*1)/this.income.tuition*12
+    		},
+    		
+    		simulation: function(){
+    			var obj = {
+		    		rent: [],
+		    		decoration:[],
+		    		equipment:[],
+		    		advertise:[],
+		    		opening:[],
+		    		salary:[],
+		    		// staff:[],
+		    		utilities:[],
+	    		};
+	    		var totalCost = [];
+	    		var totalProfit = [];
+	    		var accumulatedProfit = [];
+	    		for(var i = 0; i < this.simulatePeriod; i++) {
+	    			totalCost[i] = 0;
+	    			accumulatedProfit[i] = 0;
+	    		}
+	    		var self = this;
+	    		$.each(obj, function(k,v) {
+	    			switch(k) {
+	    				case 'rent':
+	    					for(var i = 0; i < self.simulatePeriod; i ++) {
+			    				v.push(self.investment.rent);
+			    			}
+	    					break;
+	    				case 'equipment':
+	    				case 'advertise':
+	    				case 'opening':
+	    					for(var i = 0; i < self.simulatePeriod; i ++) {
+			    				v.push((self.investment[k]/(self.investment.amortizationPeriod*12)).toFixed(0))
+			    			}
+	    					break;
+	    				case 'decoration':
+	    					for(var i = 0; i < self.simulatePeriod; i ++) {
+			    				v.push((self.sumDecoration/(self.investment.amortizationPeriod*12)).toFixed(0))
+			    			}
+	    					break;
+	    				case 'salary':
+	    					v = self.totalStaffSalary;
+	    					obj['salary'] = self.totalStaffSalary;
+	    					break;
+	    				case 'utilities':
+	    					for(var i = 0; i < self.simulatePeriod; i ++) {
+			    				v.push((self.investment[k]).toFixed(0))
+			    			}
+	    					break;
+	    				//一次性计入第一个月
+	    				// case 'advertise':
+	    				// case 'opening':
+			    		// 		v.push((self.investment[k]).toFixed(0))
+
+	    				// 	break;
+	    				default:
+	    					break;
+	    			}
+	    			$.each(v, function(k,v1) {
+	    				totalCost[k] += v1*1;
+	    			})
+	    		})
+    			obj['totalCost'] = totalCost;
+    			obj['totalTution'] = self.totalTution;
+    			$.each(obj['totalCost'], function(k, v){
+    				totalProfit[k] = obj['totalTution'][k] - v;
+    				totalProfit[k] = totalProfit[k].toFixed(0);
+    				accumulatedProfit[k] = (typeof accumulatedProfit[k-1] == 'undefined' ? 0 : accumulatedProfit[k-1]) + totalProfit[k]*1 ;
+    			})
+    			obj['totalProfit'] = totalProfit;
+    			obj['accumulatedProfit'] = accumulatedProfit;
+    			return obj;
+    		},
+    		totalStaffSalary: function(){
+				var totalStaffSalary = [];
+				for(var i = 0; i < this.simulatePeriod; i ++) {
+					totalStaffSalary[i] = 0;
+				}
+				$.each(this.staffTable, function(k, v) {
+					
+					$.each(v, function(k1,v1){
+						totalStaffSalary[k1] += v1*1;
+					})
+					
+				})
+				return totalStaffSalary;
+    		},
+    		totalTution: function(){
+				var totalTution = [];
+				for(var i = 0; i < this.simulatePeriod; i ++) {
+					totalTution[i] = 0;
+				}
+				$.each(this.childrenTable, function(k, v) {
+					
+					$.each(v, function(k1,v1){
+						totalTution[k1] += v1*1; //TODO  每月学分摊销
+					})
+					
+				})
+				return totalTution;
+    		},
+    		monthlyChildren: function(){
+    			var t = [];
+    			for(var j = 0; j < this.simulatePeriod; j++) {
+    				t[j] = 0;
+    			}
+    			$.each(this.childrenTable, function(k,v){
+    				console.log(v)
+    				for(var j = 0; j < v.length; j++) {
+    					if(v[j] != 0 ) {
+    						t[j]++;
+    					}
+    				}
+    				
+    			})
+    			return t;
+    		},
+    	}
+    });
+    </script>
+</body>
+
+</html>

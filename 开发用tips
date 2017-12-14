@@ -100,3 +100,59 @@ http://www.ytb.io/
 ----------------------------------------------------------------------------
 
 https://segmentfault.com/a/1190000011435501
+
+----------------------------------------------------------------------------
+关于通过H5页面唤Native户端的介绍
+https://github.com/AlanZhang001/H5CallUpNative
+
+1.通过a标签打开，点击标签是启动
+
+<a href="ftnn:login">打开登录页</a>
+2.通过iframe打开，设置iframe.src即会启动
+
+<iframe src="ftnn:login"></iframe>
+3.直接通过window.location 进行跳转
+
+window.location.href= "ftnn:login";
+
+
+----------------------------------------------------------------------------
+hybrid下跳转的方式？
+http://books.fx.ctripcorp.com/books/lizard/commonQA/hybrid%E4%B8%8B%E8%B7%B3%E8%BD%AC%E7%9A%84%E6%96%B9%E5%BC%8F.html
+
+Lizard.jump(url, {
+	targetModel:1,
+	title:"",
+	pageName:"index",
+	isShowLoadingPage:true,
+	meta:""
+	}) 
+
+ 1.ctrip://协议地址;  注：只处理ctrip协议的URL Schema
+    2.HTTP地址＋新的WebView, title生效
+    3.HTTP地址＋第三方App URL Schema， 系统浏览器打开; 
+      注：只支持online地址和其它App的URL Schema，例如微信的weixin://home
+    4.Hybrid相对地址＋新的WebView，title生效
+    5.相对地址＋当前页面
+    注：5.8之前版本，内部自动调用app_cross_package_href
+
+----------------------------------------------------------------------------
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=70255287&preview=/70255287/78479883/%E6%88%91%E6%90%BAbridge.JS%E5%8F%8A%E5%BE%AE%E4%BF%A1JS-api.pptx
+我携bridge.JS及微信JS-api.pptx 
+cHybridShell.Fn('open_url').run('weixin://home','3');
+
+cGuider.jump({
+	url: 'weixin://home',
+	targetModel:'browser'
+});
+
+----------------------------------------------------------------------------
+vue.js
+<tr v-for="(item,index) in simulation">
+            		<td v-for="data in item" :class="[index == 'accumulatedProfit' && data<0 ? 'negative' : '']">
+                    {{data}}
+                	</td>
+	            </tr>
+----------------------------------------------------------------------------
+
+http://npm.dev.sh.ctripcorp.com:8002

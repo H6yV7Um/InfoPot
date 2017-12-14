@@ -6,7 +6,21 @@
     <meta name="description" content="小小运动馆">
     <meta name="format-detection" content="telephone=no">
     <style>
-
+   /* * {
+    	padding: 0;
+    	margin: 0;
+    }*/
+    body {
+    	width: 100%;
+    	overflow-x: hidden;
+    }
+    .green {
+    	background: lightgreen;
+    }
+    .negative {
+    	color: red;
+    }
+    
     </style>
 </head>
 
@@ -254,7 +268,7 @@
 	                    1800元/月
 	                </td>
 	                <td>
-	                    1500元/月
+	                    2000元/月
 	                </td>
 	            </tr>
 	            <tr style="background: gray;color:#fff;">
@@ -326,7 +340,7 @@
 	            </tr>
 	        </tbody>
     	</table>
-		<table cellspacing="1">
+		<!-- <table cellspacing="1">
 	        <tbody>
 	            <tr>
 	                <th>
@@ -347,10 +361,10 @@
 	                    <input type="text" v-model="income.children">
 	                </td>
 	                <td>
-	                    人/月
+	                    人/年
 	                </td>
 	                <td>
-	                    {{expectationChildren}}人/月
+	                    {{expectationChildren}}人/年
 	                </td>
 	            </tr>
 	            <tr>
@@ -366,7 +380,7 @@
 	            </tr>
 	            <tr  style="background: gray;color:#fff;">
 	                <td>
-	                    学费收入月均摊
+	                    学费收入月平均
 	                </td>
 	                <td>
 	                    {{monthlyIncome4Tuition}}
@@ -405,25 +419,60 @@
 	                </td>
 	            </tr>
 	        </tbody>
-    	</table>
+    	</table> -->
+    	<div style="background:#fff;width:160px;position:absolute;">
     	<table cellspacing="1">
 	        <tbody>
 	            <tr>
-	            	<th></th>
-	                <th v-for="n in 12">
+	            	<th>x</th>
+	            </tr>
+	            <tr v-for="(item,index) in simulation">
+	                <td :class="[(index == 'accumulatedProfit' || index == 'accumulatedCashFlow')  ? 'green' : '']">
+	                    {{keyname[index]}}
+	                </td>
+	            </tr>
+	            <tr>
+	            	<td>
+	            		合计人数
+	            	</td>
+	            </tr>
+	            <tr>
+	            	<td>
+	            		累计人数
+	            	</td>
+	            </tr>
+	        </tbody>
+    	</table>  
+    </div>
+    	<div style="float:left;width:90%;overflow:scroll;padding-left: 160px;">
+    		<table cellspacing="1">
+	        <tbody>
+	            <tr>
+	                <th v-for="n in simulatePeriod">
 	                    {{n}}
 	                </th>
 	            </tr>
 	            <tr v-for="(item,index) in simulation">
-	                <td>
-	                    {{keyname[index]}}
-	                </td>
-	                <td v-for="data in item">
-	                    {{data}}
-	                </td>
+            		<td v-for="data in item" :class="[(index == 'accumulatedProfit' || index == 'accumulatedCashFlow') && data<0 ? 'negative' : '', (index == 'accumulatedProfit' || index == 'accumulatedCashFlow')  ? 'green' : '']">
+                    {{data}}
+                	</td>
+	            </tr>
+	            <tr>
+	            	
+	            	<td v-for="(data,index) in totalIncome" style="text-align: center;">
+	            		{{monthlyChildren[index]}}
+	            	</td>
+	            </tr>
+	            <tr>
+	            	
+	            	<td v-for="(data,index) in totalIncome" style="text-align: center;">
+	            		{{accumulatedChildren[index]}}
+	            	</td>
 	            </tr>
 	        </tbody>
     	</table>
+    	</div>  	
+    	
     	<table cellspacing="1" style="margin-top: 20px;">
     	<thead>
     		<tr>
@@ -446,6 +495,7 @@
 	                    <input type="text" v-model="staffTable[index][key]">
 	                </td>
 	            </tr>
+
 	            <tr>
 	            	<td>
 	            		合计薪资
@@ -473,7 +523,7 @@
 	            	<td>
 	            		合计人数
 	            	</td>
-	            	<td v-for="(data,index) in totalTution" style="text-align: center;">
+	            	<td v-for="(data,index) in totalIncome" style="text-align: center;">
 	            		{{monthlyChildren[index]}}
 	            	</td>
 	            </tr>
@@ -488,9 +538,9 @@
 	            </tr>
 	            <tr>
 	            	<td>
-	            		合计学费
+	            		合计收入
 	            	</td>
-	            	<td v-for="data in totalTution">
+	            	<td v-for="data in totalIncome">
 	            		{{data}}
 	            	</td>
 	            </tr>
@@ -505,24 +555,31 @@
     <script src="https://cdn.bootcss.com/vue/2.5.9/vue.js"></script>
     <script src="https://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
     <script type="text/javascript">
-    var SIMULATEPERIOD = 12;
+    var SIMULATEPERIOD = 6*12;
+    var TUITIONPERCHILD = 12*600;
+    var SALARYPERSTAFF = 5000;
     var STAFFTABLE = (function(){
 		var obj = [];
 		
-			for(var headcount = 0; headcount < 6; headcount++) {
+			for(var headcount = 0; headcount < 5; headcount++) {
 				obj[headcount] = [];
 				for(var i = 0; i < SIMULATEPERIOD; i ++) {
-					obj[headcount].push(3500);
+					obj[headcount].push(SALARYPERSTAFF);
 				}
 			}
 		return obj
 	}());
 	var MAXMONTHLYCHILDREN = 30;
     var monthlyChildren = [
+    	
+    	0,30,30,30,30,30,30,30,30,30,30,30,
+    	30,30,30,30,30,30,30,30,30,30,30,30,
+    	30,30,30,30,30,30,30,30,30,30,30,30,
+    	30,30,30,30,30,30,30,30,30,30,30,30,
     	30,30,30,30,30,30,30,30,30,30,30,30
     ];
     var count = [];
-    for(var i = 0; i < MAXMONTHLYCHILDREN; i ++) {
+    for(var i = 0; i < SIMULATEPERIOD; i ++) {
     	count.push(0)
     }
     var CHILDRENTABLE = (function(){
@@ -530,14 +587,14 @@
 		
 			for(var headcount = 0; headcount < MAXMONTHLYCHILDREN; headcount++) {
 				obj[headcount] = [];
-
 				for(var j = 0; j < SIMULATEPERIOD; j ++) {
-					obj[headcount].push(count[j]< monthlyChildren[j] ? 8000 : 0);
+					obj[headcount].push(count[j]< monthlyChildren[j] ? TUITIONPERCHILD : 0);
 					count[j]++;
 				}
 			}
 		return obj
 	}());
+
 
     var app = new Vue({
     	el: '#app',
@@ -545,13 +602,13 @@
     		staffTable: STAFFTABLE,
     		childrenTable: CHILDRENTABLE,
     		investmentBig: {
-    			area: 300,
-	    		rent: 9.6,
+    			area: 200,
+	    		rent: 5,
 	    		decoration: 800,
 	    		equipment: 10,
 	    		advertise: 8000,
 	    		opening: 5000,
-	    		salary: 3500,
+	    		salary: SALARYPERSTAFF,
 	    		staff: 6,
 	    		utilities: 2000,
 	    		cash: 35,
@@ -559,10 +616,10 @@
     		},
     		income: {
     			children: 50,
-    			tuition: 8000
+    			tuition: TUITIONPERCHILD
     		},
     		expectation: {
-    			monthlyProfit: 10000
+    			monthlyProfit: 0
     		},
     		
     		keyname: {
@@ -580,12 +637,16 @@
 	    		staffName: '姓名',
 	    		staffSalary:'薪资',
 	    		totalStaffSalary: '合计薪资',
-	    		totalTution: '合计学费',
+	    		totalIncome: '合计收入',
+	    		totalCashFlow: '合计净现金流入',
+	    		accumulatedCashFlow: '累计净现金流入',
+	    		accumulatedChildren: '累计人数',
+	    		amortizatedIncome: '学费月均摊',
+	    		accumulatedDebitTuition: '累计负债（学费）',
 	    		totalProfit: '合计利润',
 	    		accumulatedProfit: '累计利润'
     		},
     		simulatePeriod: SIMULATEPERIOD,//个月
-
     	},
     	computed: {
     		investment: function(){
@@ -651,11 +712,11 @@
 		    		utilities:[],
 	    		};
 	    		var totalCost = [];
+	    		var totalCashFlow = [];
 	    		var totalProfit = [];
-	    		var accumulatedProfit = [];
+	    		var accumulatedDebitTuition = [];
 	    		for(var i = 0; i < this.simulatePeriod; i++) {
 	    			totalCost[i] = 0;
-	    			accumulatedProfit[i] = 0;
 	    		}
 	    		var self = this;
 	    		$.each(obj, function(k,v) {
@@ -665,51 +726,57 @@
 			    				v.push(self.investment.rent);
 			    			}
 	    					break;
+	    				// case 'equipment':
+	    				// 	obj[k] = self.fn_amortizated(self.investment[k], self.investment.amortizationPeriod*12);
+	    				// 	break;
 	    				case 'equipment':
-	    				case 'advertise':
+    					case 'advertise':
 	    				case 'opening':
-	    					for(var i = 0; i < self.simulatePeriod; i ++) {
-			    				v.push((self.investment[k]/(self.investment.amortizationPeriod*12)).toFixed(0))
-			    			}
+			    			obj[k] = self.fn_amortizated(self.investment[k], 1);
 	    					break;
 	    				case 'decoration':
-	    					for(var i = 0; i < self.simulatePeriod; i ++) {
-			    				v.push((self.sumDecoration/(self.investment.amortizationPeriod*12)).toFixed(0))
-			    			}
+	    					
+			    			// obj[k] = self.fn_amortizated(self.sumDecoration, self.investment.amortizationPeriod*12);
+			    			obj[k] = self.fn_amortizated(self.sumDecoration, 1);
 	    					break;
 	    				case 'salary':
-	    					v = self.totalStaffSalary;
-	    					obj['salary'] = self.totalStaffSalary;
+	    					obj[k] = self.totalStaffSalary;
 	    					break;
 	    				case 'utilities':
 	    					for(var i = 0; i < self.simulatePeriod; i ++) {
-			    				v.push((self.investment[k]).toFixed(0))
+			    				obj[k].push((self.investment[k]).toFixed(0))
 			    			}
 	    					break;
-	    				//一次性计入第一个月
-	    				// case 'advertise':
-	    				// case 'opening':
-			    		// 		v.push((self.investment[k]).toFixed(0))
-
-	    				// 	break;
 	    				default:
 	    					break;
 	    			}
-	    			$.each(v, function(k,v1) {
-	    				totalCost[k] += v1*1;
+	    			$.each(obj[k], function(k1,v1) {
+	    				totalCost[k1] += v1*1;
 	    			})
 	    		})
     			obj['totalCost'] = totalCost;
-    			obj['totalTution'] = self.totalTution;
+    			// console.log(totalCost)
+    			obj['totalIncome'] = self.totalIncome;
+    			obj['amortizatedIncome'] = self.amortizatedIncome;
+
     			$.each(obj['totalCost'], function(k, v){
-    				totalProfit[k] = obj['totalTution'][k] - v;
-    				totalProfit[k] = totalProfit[k].toFixed(0);
-    				accumulatedProfit[k] = (typeof accumulatedProfit[k-1] == 'undefined' ? 0 : accumulatedProfit[k-1]) + totalProfit[k]*1 ;
+    				totalCashFlow[k] = obj['totalIncome'][k] - v;
+    				totalProfit[k] = obj['amortizatedIncome'][k] - v;
+    				totalCashFlow[k] = totalCashFlow[k].toFixed(0);
     			})
+
     			obj['totalProfit'] = totalProfit;
-    			obj['accumulatedProfit'] = accumulatedProfit;
+    			obj['accumulatedProfit'] = self.fn_accumulated(totalProfit);
+    			obj['totalCashFlow'] = totalCashFlow;
+    			obj['accumulatedCashFlow'] = self.fn_accumulated(totalCashFlow);
+    			for(var k = 0; k< this.simulatePeriod; k++) {
+    				accumulatedDebitTuition[k] = self.fn_accumulated(obj['totalIncome'])[k] - self.fn_accumulated(obj['amortizatedIncome'])[k];
+    			}
+    			obj['accumulatedDebitTuition'] = accumulatedDebitTuition;
     			return obj;
     		},
+    		//计算累计量
+    		
     		totalStaffSalary: function(){
 				var totalStaffSalary = [];
 				for(var i = 0; i < this.simulatePeriod; i ++) {
@@ -724,19 +791,22 @@
 				})
 				return totalStaffSalary;
     		},
-    		totalTution: function(){
-				var totalTution = [];
-				for(var i = 0; i < this.simulatePeriod; i ++) {
-					totalTution[i] = 0;
-				}
-				$.each(this.childrenTable, function(k, v) {
-					
-					$.each(v, function(k1,v1){
-						totalTution[k1] += v1*1; //TODO  每月学分摊销
+    		totalIncome: function(){
+					var totalIncome = [];
+					for(var i = 0; i < this.simulatePeriod; i ++) {
+						totalIncome[i] = 0;
+					}
+					$.each(this.childrenTable, function(k, v) {
+						$.each(v, function(k1,v1){
+							totalIncome[k1] += v1*1; 
+						})
+						
 					})
 					
-				})
-				return totalTution;
+					return totalIncome;
+    		},
+    		amortizatedIncome: function(){
+    			return this.fn_amortizatedAndAccumulated(this.totalIncome, 12);
     		},
     		monthlyChildren: function(){
     			var t = [];
@@ -744,7 +814,6 @@
     				t[j] = 0;
     			}
     			$.each(this.childrenTable, function(k,v){
-    				console.log(v)
     				for(var j = 0; j < v.length; j++) {
     					if(v[j] != 0 ) {
     						t[j]++;
@@ -754,6 +823,60 @@
     			})
     			return t;
     		},
+    		accumulatedChildren: function(){
+    			return this.fn_accumulatedInPeriod(this.monthlyChildren, 12)
+    		}
+    	},
+    	methods: {
+    		fn_amortizated: function(sum, months){
+    			var x = [];
+    			var count = 0;
+    			for(var i = 0; i < this.simulatePeriod; i ++) {
+    				count < months ? x.push((sum/months).toFixed(0)) : x.push(0);
+    				count++;
+    			}
+    			return x;
+    		},
+    		fn_amortizatedAndAccumulated: function(totalIncome, months){
+				var x = [];
+    			for(var i = 0; i < this.simulatePeriod; i ++) {
+						x[i] = 0;
+					}
+    			for(var i = 0; i < this.simulatePeriod; i ++) {
+    				var count = 0;
+    				for(var j = i; j >= 0 && count < months ; j--) {
+    					count++;
+    					x[i] += (totalIncome[j] == 'undefined' ? 0 : totalIncome[j]/months) 
+    				}
+    				x[i] = x[i].toFixed(0)
+				}
+				return x;
+    		},
+    		fn_accumulated: function(array){
+    			var accumulatedArray = [];
+    			for(var i = 0; i < this.simulatePeriod; i++) {
+	    			accumulatedArray[i] = 0;
+	    		}
+	    		for(var k = 0; k < this.simulatePeriod; k++) {
+	    			accumulatedArray[k] = (typeof accumulatedArray[k-1] == 'undefined' ? 0 : accumulatedArray[k-1]) + array[k]*1 ;
+    			}
+	    		return accumulatedArray;
+
+    		},
+    		fn_accumulatedInPeriod: function(array, period){
+    			var accumulatedArray = [];
+    			for(var i = 0; i < this.simulatePeriod; i++) {
+	    			accumulatedArray[i] = 0;
+	    		}
+	    		for(var k = 0; k < this.simulatePeriod; k++) {
+	    			var count = 0;
+	    			for(var j = k; j >= 0 && count<period; j--){
+	    				accumulatedArray[k] += (typeof array[j] == 'undefined' ? 0 : array[j]);
+	    				count++;
+	    			}
+    			}
+	    		return accumulatedArray;
+    		}
     	}
     });
     </script>

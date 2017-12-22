@@ -156,3 +156,52 @@ vue.js
 ----------------------------------------------------------------------------
 
 http://npm.dev.sh.ctripcorp.com:8002
+
+----------------------------------------------------------------------------
+
+
+$.when(self.getRecentTransactions(),self.getBill()).then(function(recentTransactionsInfo,billInfo){
+                
+},function( errorCode ){
+
+});
+
+
+getRecentTransactions:function(){
+    var deferred = Deferred();
+    异步function onAlways(data) {
+    	deferred.resolve(data.recentTransactionsInfo);
+    }
+    return deferred.promise();
+},
+getBill:function(){
+    var deferred = Deferred();
+    异步function onAlways(data) {
+                deferred.resolve(data.billInfo || {});
+                deferred.resolve({showCopyBtn:Lizard.app.vendor.is('CTRIP'),hasBill:false,installable:false});
+                deferred.reject('PORTALSCQA0001');
+                deferred.reject();
+        }
+    }
+    return deferred.promise();
+},
+
+----------------------------------------------------------------------------
+网页性能优化
+https://developers.google.com/speed/pagespeed/insights/?hl=zh-CN
+
+----------------------------------------------------------------------------
+技术交流分享课件
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=7508155
+
+----------------------------------------------------------------------------
+大数据
+google三篇论文
+hadoop实现了
+
+民主化AI(Democratize AI)
+
+ai
+http://aiportal.basebiz.ctripcorp.com/#/
+
+知识图谱

@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "demo": "node excelparse-income.js && node excelparse-expense.js && node excelparse-transfer.js && node excelparse-allocate.js && node excelparse-dreamobj.js && node excelparse-target.js"
+    "demo": "node watchexcel.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "excel-parser": "^0.2.2",
     "optimist": "^0.6.1",
     "parseurl": "^1.3.1"
   }

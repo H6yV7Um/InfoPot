@@ -246,3 +246,8 @@ www.stormboard.com
 xmind
 万门大学
 智佳考研 李林
+
+
+----------------------------------------------------------------------------
+
+"http://m.uat.qa.nt.ctripcorp.com/creditcard/h5/yogold/index.html?envtype=uat&from=h5ttps%3A%2F%2Fm.uat.qa.nt.ctripcorp.com%2Fwebapp%2Fcc%2Findex".match(/^http[^?]*(h5|test)/)

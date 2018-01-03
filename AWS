@@ -1,0 +1,215 @@
+6digit zxy!
+
+折腾AMAZON EC2 之（2）—— 配置java环境、Tomcat、Mysql
+http://blog.csdn.net/u010449283/article/details/45459033
+
+
+
+https://www.zhihu.com/question/29956220/answer/46344887
+另外大数据是 传统 数据获取（爬虫）＋分析＋处理（商业智能）＋预测＋判断（机器学习）
+加上大而全的数据
+
+商业智能是正规科学 （金融 电商 后台用最多 olap etl那些 都是一堆人在搞 大部分用多是java）
+机器学习涉及预测（java python） 就是半仙科学了 和中医 股票策略预测类似 
+一半客观貌似精确 一半忽悠 
+
+
+
+
+AWS 上的项目：
+启动 LAMP 堆栈 Web 应用程序
+在 AWS 上启动并运行高度可用的 PHP Web 应用程序
+https://aws.amazon.com/cn/getting-started/projects/launch-lamp-web-app/?c_5
+
+
+AWS Elastic Beanstalk:
+您只需上传代码，Elastic Beanstalk 即可自动处理包括容量预置、负载均衡、自动扩展和应用程序运行状况监控在内的部署工作.
+Elastic Beanstalk 可以根据应用程序的具体需求，使用可轻松调整的 Auto Scaling 设置来自动扩展和缩减应用程序。
+Amazon Relational Database Service (RDS) 
+
+
+
+
+Deploying a High-Availability PHP Application with an External Amazon RDS Database to Elastic Beanstalk
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/php-ha-tutorial.html?icmpid=docs_tutorial_projects
+===========================================================================================
+
+		  ┏━━━━━━━━━━━━━━━━━┓
+STEP1:  ┃Launch a DB Instance in Amazon RDS┃
+		  ┗━━━━━━━━━━━━━━━━━┛
+
+mysql 5.6.37
+mydqlinstance
+
+主用户名:littlecloudz
+主密码:880308zxy
+DB Instance Identifier, Master Username, and Master Password (and Confirm Password). 
+
+VPC – Default VPC: vpc-12da177a
+
+
+Database Name数据库名称: awsdatabase
+Database Port: 3306
+
+
+===========================================================================================
+Connecting to a DB Instance Running the MySQL Database Engine
+https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html
+
+
+DNS address
+
+
+mysql -h mydqlinstance.cjhdnjqsawox.us-east-2.rds.amazonaws.com -P 3306 -u littlecloudz -p
+
+
+报错:10060
+回答1：https://stackoverflow.com/questions/37142701/error-10060-while-trying-to-connect-an-amazon-mysql-rds
+In AWS console, there must be a security group for your RDS instance. Add an inbound rule to that group for allowing connections from your machine (Add your IP-address).
+You can also set as Anyware (Not recommended for production).
+
+回答2：Most likely this is because you did not add a rule for the inbound TCP port in the security group used by your database instance to communicate with your client workstation. From the DB Instance details page in the RDS console, select the instance, click on the detail tab then click on the Security Group link for the DB Instance. 
+You should be taken to the Security Group section on the EC2 dashboard. Select the Security Group in the list and at the bottom of the page, select the Inbound tab. 
+Click Edit and a popup will appear. 
+Click Add Rule and select MySQL/Aurora for the Type. For the source, you should be able to select "My IP" and the IP address of your client workstation should be populated. After you apply this, you should be able to connect.
+
+回答3： 公开访问 -> 是
+
+
+报错:1045<28000>
+?修改IAM DB 身份验证已启用
+？重启
+===========================================================================================
+AWS CLI Command
+安装：Installing the AWS Command Line Interface https://docs.aws.amazon.com/cli/latest/userguide/installing.html
+
+pip:
+$ C:\Python27\Scripts\pip2.7.exe install awscli --upgrade --user
+$ pip install awscli --upgrade --user
+
+如何在windows下使用pip安装 https://www.cnblogs.com/JachinYin/p/6388482.html?utm_source=itdadao&utm_medium=referral
+
+
+添加PATH:
+pip:  D:\Users\zhangxy\AppData\Roaming\Python\Scripts
+生效Close any running command prompts and re-open.
+
+
+验证：
+$ aws --version
+awscli-1.14.17
+
+删除： $ pip uninstall awscli
+===========================================================================================
+配置  https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#config-settings-and-precedence
+
+
+$ aws configure --profile user2
+AWS Access Key ID [None]: AKIAIXMKCCWWIX36DCKA
+AWS Secret Access Key [None]: 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
+Default region name [None]: us-east-2
+Default output format [None]: json
+
+
+
+
+
+===========================================================================================
+https://docs.aws.amazon.com/cli/latest/reference/rds/describe-db-instances.html
+
+查询方法1：https://rds.us-west-2.amazonaws.com/
+   ?Action=DescribeDBInstances
+   &MaxRecords=100
+   &SignatureMethod=HmacSHA256
+   &SignatureVersion=4
+   &Version=2014-09-01
+   &X-Amz-Algorithm=AWS4-HMAC-SHA256
+   &X-Amz-Credential=AKIADQKE4SARGYLE/20140420/us-west-2/rds/aws4_request
+   &X-Amz-Date=20140420T171917Z
+   &X-Amz-SignedHeaders=content-type;host;user-agent;x-amz-content-sha256;x-amz-date
+   &X-Amz-Signature=caa44629fa60576c2c282d9b74d47647f9e9f229f6d0e52db1d3be0d095743b0
+
+
+查询方法2：
+$ aws rds describe-db-instances --db-instance-identifier mydqlinstance | clip
+
+输出放入粘贴板 | clip
+
+
+
+===========================================================================================
+
+
+		┏━━━━━━━━━━━━━━━━━━━━┓
+STEP2:┃Launch an Elastic Beanstalk Environment ┃
+		┗━━━━━━━━━━━━━━━━━━━━┛
+
+console.aws.amazon.com/elasticbeanstalk/home#/newApplication?applicationName=tutorials&environmentType=LoadBalanced
+
+平台: PHP 5.6 
+
+环境名称:tutorials-hpdnn-env
+环境 URL:tutorials-hpdnn-env.us-east-2.elasticbeanstalk.com
+
+
+
+
+		┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+STEP3:┃Configure Security Groups, Environment Properties, and Scaling  ┃
+		┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+To add a security group to your environment
+https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#SecurityGroups:sort=groupIdk
+,default
+
+To configure environment properties for an Amazon RDS DB instance
+RDS_HOSTNAME  mydqlinstance.cjhdnjqsawox.us-east-2.rds.amazonaws.com
+RDS_PORT 3306
+RDS_DB_NAME awsdatabase
+RDS_USERNAME  littlecloudz
+RDS_PASSWORD  880308zxy
+
+To configure your environment's Auto Scaling group for high availability
+2
+4
+
+
+
+		┏━━━━━━━━━━━━━━━┓
+STEP3:┃Deploy the Sample Application ┃
+		┗━━━━━━━━━━━━━━━┛
+上传.zip压缩文件
+
+
+
+===========================================================================================
+Working with Java
+
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/java-getstarted.html
+
+
+Apache Tomcat
+is an open source web container for applications that use Java servlets and JavaServer Pages (JSPs) to serve HTTP requests. Tomcat facilitates web application development by providing multithreading, declarative security configuration, and extensive customization. Platform configurations are available for each of Tomcat's current major versions.
+
+
+If you use the Eclipse integrated development environment (IDE) to develop your Java application, you can also get 
+the AWS Toolkit for Eclipse. 
+The AWS Toolkit for Eclipse is an open source plug-in that lets you manage AWS resources, including Elastic Beanstalk applications and environments, from within the Eclipse IDE.
+
+
+If the command line is more your style, install 
+the Elastic Beanstalk Command Line Interface (EB CLI) 
+and use it to create, monitor, and manage your Elastic Beanstalk environments from the command line. 
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃Getting Started with Java on Elastic Beanstalk  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━┛
+Finally, a configuration file is included in 
+.ebextensions
+that copies the logs from /tmp/ to the locations read by Elastic Beanstalk when you request environment logs.
+
+
+
+my-app
+
+my-app.us-east-2.elasticbeanstalk.com

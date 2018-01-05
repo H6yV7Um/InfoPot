@@ -214,6 +214,9 @@ http://www.jb51.net/shouce/jquery1.82/regexp.html
 * 匹配前面的子表达式零次或多次
 + 匹配前面的子表达式一次或多次
 
+"http://www.ekek.h5.com/djld?query=h5".match(/http.+?(h5)/)
+非贪婪模式
+
 ----------------------------------------------------------------------------
 //timestamp为服务器返回的格林威治时间（非本地时间）
 converDate:function(timestamp,format) {
@@ -251,3 +254,22 @@ xmind
 ----------------------------------------------------------------------------
 
 "http://m.uat.qa.nt.ctripcorp.com/creditcard/h5/yogold/index.html?envtype=uat&from=h5ttps%3A%2F%2Fm.uat.qa.nt.ctripcorp.com%2Fwebapp%2Fcc%2Findex".match(/^http[^?]*(h5|test)/)
+
+
+----------------------------------------------------------------------------
+
+
+v-show="isShowCouponInfo"
+@click="viewRelatedCoupon($event, item)"
+
+----------------------------------------------------------------------------
+
+快捷键：ctrl + shift +alt + s打开Project Structure 
+
+
+idea有时候确实会抽风，这种时候只需要让idea清理之前的项目文件，更新索引就行。
+File -> Invalidate Caches/restart
+
+
+
+

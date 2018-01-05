@@ -4,7 +4,6 @@ var Promise = require("bluebird");
 var fs = require('fs');
 var path = require('path');
 
-
 // http://i.youku.com/i/UNDUxMTA1MDM5Ng==/videos?q=艺术
 var seriesFolder = '36堂艺术课程';
 var lessons = {
@@ -21,6 +20,11 @@ var lessons = {
     '力豆艺术课程-中班10-珊瑚与小丑鱼':"http://pl-ali.youku.com/playlist/m3u8?vid=XMzEyNjA3MzQ2NA%3D%3D&type=hd2&ups_client_netip=65554579&ups_ts=1515170075&utid=XtBlDJ7kAjsCAXxPJDO3zqWf&ccode=0502&psid=18eded6fce9faddaafe38ffff3126cd9&password=panasia&duration=1515&expire=18000&ups_key=859ba47875523c074ac72156ab97a8e1",
     '力豆艺术课程-中班9-蝴蝶的衣裳':"http://pl-ali.youku.com/playlist/m3u8?vid=XMzEyNjA2OTYwMA%3D%3D&type=hd2&ups_client_netip=65554579&ups_ts=1515170265&utid=XtBlDJ7kAjsCAXxPJDO3zqWf&ccode=0502&psid=250ac8025ac1c7a2b2cc21ae18dc2186&password=panasia&duration=1608&expire=18000&ups_key=e0093e55362b0307c44d6bf89fd3f9f0",
     '力豆艺术课程-小班9-蚂蚁勤做工': "http://pl-ali.youku.com/playlist/m3u8?vid=XMzEyNjA2ODM4NA%3D%3D&type=hd2&ups_client_netip=65554579&ups_ts=1515171294&utid=XtBlDJ7kAjsCAXxPJDO3zqWf&ccode=0502&psid=47ab55993d772d15898ef6447bc0e372&ups_userid=768492846&ups_ytid=768492846&password=panasia&duration=1767&expire=18000&ups_key=f5f405a445e2653012f35478467551d6",
+    'LTA力豆藝術課程-小班1-誰的大圓臉': "http://pl-ali.youku.com/playlist/m3u8?vid=XMjczMjExNjk5Mg%3D%3D&type=hd2&ups_client_netip=65554579&ups_ts=1515173283&utid=XtBlDJ7kAjsCAXxPJDO3zqWf&ccode=0502&psid=e749880096cf88cad25c9a0509fa6cc0&ups_userid=768492846&ups_ytid=768492846&password=panasia&duration=940&expire=18000&ups_key=04f6e0906adab9cd2966f1e0aaaff274",
+    '力豆艺术课程 - 小班2-好饿的毛毛虫': "http://pl-ali.youku.com/playlist/m3u8?vid=XMjc4NjExOTkyNA%3D%3D&type=hd2&ups_client_netip=65554579&ups_ts=1515174119&utid=XtBlDJ7kAjsCAXxPJDO3zqWf&ccode=0502&psid=8df8018f1147d95e2b1870d683d132df&ups_userid=768492846&ups_ytid=768492846&password=panasia&duration=1730&expire=18000&ups_key=242f0ef01f27f71a4b2f51472404eb9b",
+    '力豆艺术课程-小班3-小小厨师':"http://pl-ali.youku.com/playlist/m3u8?vid=XMjg3NDc2NTgwNA%3D%3D&type=hd2&ups_client_netip=65554579&ups_ts=1515175110&utid=XtBlDJ7kAjsCAXxPJDO3zqWf&ccode=0502&psid=29ff5fd73e1fc0dba6622449ef637a04&ups_userid=768492846&ups_ytid=768492846&password=panasia&duration=1185&expire=18000&ups_key=4a93c2ecf79d5e8ba5f8327409e65262",
+    '力豆艺术课程-小班4_冷冷国与暖暖国':"http://pl-ali.youku.com/playlist/m3u8?vid=XMjkyMDYzMTc5Mg%3D%3D&type=hd2&ups_client_netip=65554579&ups_ts=1515175500&utid=XtBlDJ7kAjsCAXxPJDO3zqWf&ccode=0502&psid=51e9b18c2d7b7c63fb716d5c213635a3&ups_userid=768492846&ups_ytid=768492846&password=panasia&duration=1671&expire=18000&ups_key=43df3c355ea9864fd0d3e68cce2d5db2",
+    '力豆艺术课程-小班5-下雨了':"http://pl-ali.youku.com/playlist/m3u8?vid=XMzAxMjgzOTczNg%3D%3D&type=hd2&ups_client_netip=65554579&ups_ts=1515175911&utid=XtBlDJ7kAjsCAXxPJDO3zqWf&ccode=0502&psid=14e6c0a0604ef829c448ae8346e4e369&ups_userid=768492846&ups_ytid=768492846&password=panasia&duration=1445&expire=18000&ups_key=fd615d1e6624e514394fdf0e193a2021",
 }
 var lessonsArray = [];
 var urlArray = [];
@@ -32,6 +36,8 @@ for(var p in lessons) {
 var lessonFolder = lessonsArray[lessonsArray.length-1];
 var listUrl = urlArray[urlArray.length-1];
 
+
+var counter = 0;
 
 var videoUrlList = [];
 var createFolder = function(to) { //文件写入
@@ -68,8 +74,17 @@ var createFolder = function(to) { //文件写入
             videoUrlList = body.match(/http:\/\/.*?(ame)/g)
             videoUrlList.forEach(function(item, index){
                 createFolder(`./${seriesFolder}/${lessonFolder}/${index}.mp4`);
-                request(item).pipe(fs.createWriteStream(`./${seriesFolder}/${lessonFolder}/${index}.mp4`));
-                console.log('ing---')
+                var reader = request(item).pipe(fs.createWriteStream(`./${seriesFolder}/${lessonFolder}/${index}.mp4`));
+                // reader = request('http://58.216.103.25/67732A0CBBE3882FDF5DF06352/03000B080559F96730E53443384AA7BAE8151F-D374-556B-4382-8CA4CD73846B.mp4.ts?ccode=0502&duration=1515&expire=18000&psid=18eded6fce9faddaafe38ffff3126cd9&ups_client_netip=65554579&ups_ts=1515170075&ups_userid=&utid=XtBlDJ7kAjsCAXxPJDO3zqWf&vid=XMzEyNjA3MzQ2NA%3D%3D&vkey=Aa61332200e984f418e782dcc93cd4d22&ts_start=11.9&ts_end=23.9&ts_seg_no=87&ts_keyframe').pipe(fs.createWriteStream(`./test/test.mp4`));
+                // console.log(reader)
+                reader.on('finish', function(){
+
+                    counter++;
+                    var percent = parseInt(counter/videoUrlList.length*100);
+                    console.log(`${index}.mp4下载完毕`)
+                    console.log(`=== ${lessonFolder} 已完成 ${percent}% ===`)
+                });
+                // console.log('ing---')
             })
 
             

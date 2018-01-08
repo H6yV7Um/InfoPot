@@ -1,0 +1,491 @@
+技术交流分享课件
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=7508155
+
+007 每周技术分享  邮轮业务SBU  邮轮业务SBU首页  08 学习与成长
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=143858052
+创建： zj朱佳，最新修改： lbf李宾飞 于 十二月 27, 2017
+KPI学习与成长占比60%。
+部门内技术分享，每次积3分。
+------------------------------------------------------------------------------------------------
+
+集团AI云平台
+http://aiportal.basebiz.ctripcorp.com/#/article/8a99eed05fdd1d60015fe35008200000/8a99eed05fdd1d60015fe350e20c0001
+身份证识别
+1、接口描述
+用户向服务请求识别身份证，身份证识别包括正面和背面。
+2、请求地址
+  接口提供SDK依赖MAVEN
+    <dependency>
+      <groupId>com.ctrip.basebiz.bi.aithinktank</groupId>
+      <artifactId>CtripAIClient</artifactId>
+      <version>0.0.1</version>
+    </dependency>
+ 调用方法：CtripZhuGeService.Service(request);
+ 3、请求字段
+字段
+类型	必选	描述	子字段	类型	必需
+appid	String	是	应用ID	无	-	-
+biztype	String	是	定值：identitydisting	无
+service	String	是	定值：imgservice	无
+clientkey	String	否	随机值	无
+requestData	JSON
+是	
+image	String	是
+id_card_side	String	是
+4、请求格式
+{
+    "appid": "100011817",
+    "biztype": "identitydisting",
+    "service": "imgservice",
+    "clientkey": "123456",
+    "requestData": {
+        "image": "xxx",
+          "id_card_side":"front"
+    }
+    }
+5、返回字段
+字段
+类型	必选	子字段	类型	必需	子字段	类型	必需
+return_code	String	是	无	-
+return_msg	String	是	无
+result	JSON	否	job_id	String	否	无	-
+idcard_type	String	否	无	-
+direction	String	否
+image_status	String	否
+edit_tool	String	否
+result	array	否	width	String	否
+top	String	否
+left	String	否
+height	String	否
+type	String	否
+words	String	否
+ext	map	否	无	-
+6、返回实例
+成功
+{
+    "return_code": 0,
+    "return_msg": "成功",
+    "result": {
+        "idcard_type": "",
+        "direction": "",
+        "image_status": "unknown",
+        "edit_tool": "",
+        "job_id": 4205345430549330000,
+        "result": [
+         {
+            "height": 24,
+           "words": "奥巴马",
+           width": 54,
+           "left": 106,
+           "type": 4,
+           "top": 100
+        }
+        ]
+    },
+    "ext": ""
+    }
+异常
+{
+       "return_code":"-1",
+       "return_msg":"系统异常",
+        "job_id":""
+        }
+7、字段含义
+
+
+------------------------------------------------------------------------------------------------
+
+周源-OCR技术介绍.pdf
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=7508155&preview=%2F7508155%2F106332597%2F%E5%91%A8%E6%BA%90-OCR%E6%8A%80%E6%9C%AF%E4%BB%8B%E7%BB%8D.pdf
+基础业务研发部 用户中心 周源
+
+身份证号识别
+护照号识别
+中文识别
+
+包括自己在内带领4人团队，负责下述产品除native以外的前、后端开发。包括H5、Hybird、Online、Offline、服务、Job等。
+今年2017年4月受产品、领导的要求，开始OCR的调研和开发。
+
+OCR （Optical Character Recognition，光学字符识别）是指电子设备（例如扫描仪或数码相机）检查纸上打印的字符，通过检测暗、亮的模式确定其形状，然后用字符识别方法将形状翻译成计算机文字的过程；即，针对印刷体字符，采用光学的方式将纸质文档中的文字转换成为黑白点阵的图像文件，并通过识别软件将图像中的文字转换成文本格式，供文字处理软件进一步编辑加工的技术。
+
+竞品分析
+程外
+•百度OCR 
+	http://apistore.baidu.com/apiworks/servicedetail/969.html?hp.com
+	接口地址：http://apis.baidu.com/idl_baidu/baiduocrpay/idlocrpaid
+	请求方法：POST
+	请求参数(header) :
+	参数名	类型	必填	参数位置	描述	默认值
+	apikey string	是	header	 API密钥 您自己的apikey
+	请求参数(bodyParam) :
+	参数名	类型	必填	参数位置	描述	默认值
+	fromdevice  string	是	bodyParam	  来源，例如：android、iPhone、pc等  pc
+
+•微软OCR
+
+
+程内
+•金融
+	场景：银行卡号识别
+	申请了多个技术专利
+	使用第三方开源代码改写
+	仅支持部分银行卡
+	综合识别率约70 %
+•团队游
+	场景：出团证 件的上传和验
+	使用 MODI
+	非实时、批量处理
+	卡号综合识别率约90% ，姓名综合识别率约60 %
+•去哪儿
+	Hackathon竞赛
+	与去哪儿合作
+	使用开源专利自主研发
+
+
+我的携程Android于V6.17上线常旅-护照识别
+我的携程 IOS 于V6.18上线常旅-护照识别
+我的携程 Android 于V6.18  上线常旅 -身份证号识别 
+我的携程 IOS 将于 V6.19  上线常旅 - 身份证号识别
+综合前端 +核心组件，护照识别成功率 > 95% 核心组件识别率 > 99.5%
+综合前端 +核心组件，身份证号识别成功率 > 90% 核心组件识别率 > 99%
+
+核心知识：
+一、二值化（自适应阀值、迭代法）
+一幅图像包括目标物体、背景还有噪声，要想从多值的数字中直接提取出目标物体，最常用的方法就是设定一个阈值，用 T将图像的数据分成两部： 大于 T的像素群和小于T的像素群。这是研究灰度变换的最特殊方法，称为图像的二值化
+•二值化的方法:
+将大于 T的像素群值设 定为白色（或者黑），小于 T的像素群值设定为黑色（或者白）。
+•全局二值化，在表现图像细节方面存很大缺陷。 为了弥补这个缺陷，出现 了局部二值化方法。
+•局部二值化的方法就是按照一定规则将整幅图像划分为 N个窗口，对这 N个 窗口中的每一个窗口再按照统一的阈值 T将该窗口内的像素划分 为两部分，进行二值化处理。
+	局部自适应二值化
+	局部二值化也有一 个缺陷。这存在于那统一阈值 的选定。 这个阈值 是没有经过合理的运算得来，一般取该窗口平局值。 这就导致在每一个 窗口内仍然出现的是全局二值化缺陷。为了解决这个问题，就出现了局部自适应二值化方法。
+	局部自适应二值化，该方法就是在的基础之上将阈设定更加合理化。该方法的 阈值是通过对窗口像素平均值 E，像素之间的差平方 P，像素之间的 均方根值 Q等各种局部特征，设定一个 参数方程 进行阈值的计 算，
+	例如： T=a* E+b E+b*P+c *Q ，其中 a,b,c 是自由参数。这样得出来的二值 化图像就更能表现出二值中的细节 。
+•二值化是 图像处理 的基本操作，任何图像处理离不开 二值化操作。
+
+二、归一化
+归一化是种无量纲处理手段，使物系统数值的绝对变成某相对值关系。简化计算，缩小量值 的有效办法。
+例如，滤波器中各个频率值以 截止频率 作归一化后，频率都是截止的相对值没有了量纲。
+阻抗以 电源内阻 作归一化后，各个阻抗都成了种相对阻抗值 ， “欧姆 ”这个量纲也没有了。等各种运算都结束后，反归一化切复原了。信号处理 工具箱 中经常使用的是nyquist 频率，它被定义为采 样频率 的二分之一，在滤波器阶数选择和设计中截止频率均使用nyquist 频率进行归一化处理。
+例如对于个采样为1000hz的 系统， 400hz 的归一化频率就为400/500=0 ．8。归一化频率范围在 [0,1]之间。如果将归一化频率 转换为角，则将归一化频率乘以 2*pi ；如果将归一化频率转换为 hz ，则将归一化频率乘以采样频率的一半。
+•归一化导引
+一般而言，波函数是个复函数。可是，概率密度是一个实函数，空间内积分和为1，成为概率密度函数。所以在区域内找到粒子的 概率是 1。
+既然粒子存在于空间，因此在空间内找到粒子概率是 1。所以，积分于整个空间将得到 1。
+假若，从解析 薛定谔方程 而得到的波函数，其概率是有限的，但不等于1，则可以将波函数乘一个常数，使概率等于1.或者，假若波函数内，已经有一个任意常数，可以设定这任意常数的值，使概率等于1.
+在OCR 中多用于边缘检测算法。
+
+三、向量匹配
+在数学中，几何向量（也称为欧几里得向量，通常简称向量、矢量），指具有大小（magnitude）和方向的量。
+向量可以形象化地表示为带箭头的线段。箭头所指：代表向量的方向；线段长度：代表向量的大小。
+向量的记法：印刷体作粗字母（如 a、b、u、v），书写时在 ），书写时在 字母顶上加一小箭头 →。[1] 如果给定向量的起点（ A）和终点（ B） ，可将向量记作 AB （并于顶上加 →）。给空间设一 ）。给空间设一直角坐标系 ，也 能把向量以 数对 形式表示，例如Oxy平面中(2,3) 是一向量。 
+
+
+一、身份证号识别
+
+前端逻辑 -边缘检测（二值化）
+前端逻辑 -确定待识别部分的顶点
+前端逻辑 -确定待识别部分的宽高
+前端逻辑 -传入上述信息
+
+核心逻辑-图片缩放到标准像素
+ 每个手机像素不同，需标准化
+ 图片流缩放 图片流缩放
+核心逻辑-二值化 图片
+ 自适应阀值
+ 迭代法
+核心逻辑-旋转
+ 从底部向上每个像素以-2度到 +2 度切片
+ 判跳变，找出最合适的切割方法
+核心逻辑-切割
+ 判跳变， 画线18 个数字、 34 条线
+ 拿出有值的块，放入 [18]数组
+核心逻辑 -向量 比较
+ 各个有值的块，作成5*5的区块，并向量化
+ 向量异或比较
+• 前端 逻辑 -后处理
+自学习 -模板生成
+
+
+二、护照号识别
+三、中文识别
+
+周源--用户中心UserProfile.pptx
+http://conf.ctripcorp.com/download/attachments/7508155/%E5%91%A8%E6%BA%90--%E7%94%A8%E6%88%B7%E4%B8%AD%E5%BF%83UserProfile.pptx?version=1&modificationDate=1452230723000&api=v2
+
+
+
+
+
+
+证件文本识别（OCR）
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=148261643
+
+------------------------------------------------------------------------------------------------
+
+ios调用证件扫描 
+基础业务研发部 …  iOS研发
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=126135650
+创建： 未知用户 (litp)，最新修改于： 三月 31, 2017
+ios hybrid调用证件扫描的方法：
+ 
+通过 app_do_business_job传Business Code为 doOCRScan 调用。native会从json参数中读取scannerUI, defaultScannerType, bizCode, imageURL字段(具体的字段描述请参考上面的CTScanParamModel介绍),任何参数不传值则为默认值。
+scannerUI可传字符串：“default”,“passportOnly”,“forCruise”.
+defaultScannerType可传字符串：“idCard”，“passport”.
+
+如果是护照扫描成功，返回的字段有:
+字段
+描述
+uuid	标识
+originalString	扫描出的原始字符串
+familyName	姓
+givenName	名
+passportID	护照号
+countryCode	3位国家码，如中国大陆为“CHN”
+birthday	生日，yyyyMMdd格式
+gender	性别, 0代表女性，1代表男性
+expirationDate	护照有效期，yyyyMMdd格式
+imageBase64	Base64编码的原始截图
+ 
+如果是身份证扫描成功，返回的字段有：
+字段
+描述
+uuid	标识
+originalString	扫描出的原始字符串
+cardID	身份证号
+
+------------------------------------------------------------------------------------------------
+android native&hybrid调用证件扫描 基础业务研发部 …  Android研发
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=126136655
+创建： zc朱超，最新修改于： 二月 14, 2017
+
+android hybrid调用证件扫描的方法：
+ 
+ 
+ 
+通过 app_do_business_job传Business Code为 doOCRScan 调用。native会从json参数中读取scannerUI, defaultScannerType, bizCode, imageURL字段(具体的字段描述请参考上面的CTScanParamModel介绍),任何参数不传值则为默认值。
+scannerUI可传字符串：“default”,“passportOnly”,“forCruise”.
+defaultScannerType可传字符串：“idCard”，“passport”.
+ 
+
+ 
+如果是护照扫描成功，返回的字段有:
+ 
+字段
+描述
+originalString	扫描出的原始字符串
+familyName	姓
+givenName	名
+passportID	护照号
+countryCode	3位国家码，如中国大陆为“CHN”
+birthday	生日，yyyyMMdd格式
+gender	性别, 0代表女性，1代表男性
+expirationDate	护照有效期，yyyyMMdd格式
+originalImageURL	原始截图的本地保存地址
+ 
+ 
+ 
+如果是身份证扫描成功，返回的字段有：
+ 
+字段
+描述
+originalString	扫描出的原始字符串
+cardID	身份证号
+
+
+------------------------------------------------------------------------------------------------
+
+证件全文本OCR
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=148261643
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=148261651
+
+
+git@git.dev.sh.ctripcorp.com:zhouyua/mbrPublicOCR.git
+┏━━━━━━━━━━┓
+┃接入方法及接口说明  ┃
+┗━━━━━━━━━━┛
+
+我们目前提供客户端和服务端两个版本，
+客户端版本支持英文数字，不支持中文，支持身份证和护照。  
+	客户端版本的接入请联系同部门的王亮。
+服务端版本支持全文，包括身份证、护照、火车票。
+	服务端版本身份证和护照的服务为
+	http://repository.soa.ctripcorp.com/services/1541
+	服务端版本火车票识别的服务为
+	http://repository.soa.ctripcorp.com/services/3939
+
+
+执行OCR输入格式
+类名	属性英文名称	属性中文名称	数据类型	是否必需	属性描述
+DoOCRRequest	ParameterList	参数列表	List<ParameterItem>	Y	下详
+Image	图片流	string	Y	　
+ParameterItem
+类名	属性英文名称	属性中文名称	数据类型	是否必需	属性描述
+ParameterItem	
+	Key	　	String	　	
+	Value	　	string	
+		可能的Key为
+		1.BizType 业务类型 公司通用BU的三字码 		Value为PKG,DAB,TRA,CMB,LPB等
+		2.CertificateType 证件类型 		Value为IDCard=身份证 Passport=护照
+		3.PassportType 护照类型 Value为G/E
+		4. PassportID 护照唯一ID 
+		5.UID 没有则不传
+		6.PassengerID  没有则不传
+		7.RecognizeItem 图片类型 Value为 1=姓名 2=签发地 3=出生地 4=姓 5=名 PassportNo=护照号码 IDCardNo=身份证号码
+		8.PassportNoLine 标识护照号的行数 Value为1/2
+执行OCR输出格式
+类名	属性英文名称	属性中文名称	数据类型	是否必需	属性描述
+DoOCRResponse	
+	Result	执行结果	ResultInfo	　	　
+	CharacterResults	识别的结果	List<CharacterInfo>	　	下详
+	SerialNumber	流水号	int	　	　
+类名	属性英文名称	属性中文名称	数据类型	是否必需	属性描述
+ResultInfo	
+	Result	执行结果	string
+	ErrMessage	错误信息	string		　	 
+		-1 : 传入的参数错误
+		-2 : 服务异常
+		-3 : 无法识别
+		...
+	    0  : 成功
+类名	属性英文名称	属性中文名称	数据类型	是否必需	属性描述
+CharacterInfo	
+	OrderNumber	序号	int	　	0 国籍 1 英文姓 2 英文名 3 护照号码 4 出生日期 5 有效期 6 性别
+	ProbabilityList	可能的结果	List<ProbabilityInfo>	　	结果根据概率降序排序，最多10个
+类名	属性英文名称	属性中文名称	数据类型	是否必需	属性描述
+ProbabilityInfo
+	Character	字符	string	　	
+	Possibility	概率	int	　	根据向量比较结果计，给出权重
+
+
+┏━━━━━━━━━━┓
+┃线上接入方及接口人  ┃
+┗━━━━━━━━━━┛
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=148262191
+接入方 渠道 证件 场景 时间
+邮轮	Offline	 护照、身份证（全文）（其中切图部分由邮轮团队实现，识别部分由基础实现） 给邮轮公司提交证件信息	2017年3月
+金融	H5&Offline	火车票	审核用户提交的火车票	2017年12月
+我携	APP	护照、身份证（不包含中文）	填写常用旅客的证件号	2016年9月
+机票	APP	护照、身份证（不包含中文）	下单时候填写出行人的证件号	2017年4月
+度假	APP	护照、身份证（不包含中文）	下单时候填写出行人的证件号	2017年11月
+我携	APP	护照、身份证（全文）	填写常用旅客	2017年3月
+机票	APP	身份证（全文）	下单时候填写出行人	2017年3月???  2018年3月初
+度假	APP	护照（全文）	下单时候填写出行人	2017年4月???  2018年3月初
+
+
+------------------------------------------------------------------------------------------------
+
+用户中心201612 基础业务研发部 …  2016年12月需求规划
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=119312750
+创建： xyj徐蕴婕，最新修改于： 十二月 08, 2016
+
+傅诗楹	常用信息	native，服务端	V7.1 OCR识别项目应用（邮轮接入） 封装本地OCR识别组件 服务端中文护照训练和识别服务 Y	邮轮-杜姗姗	P0	
+------------------------------------------------------------------------------------------------
+IBU交接
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=143872860
+创建： ysx杨思洵，最新修改： wy吴垠 于 十二月 22, 2017
+
+模块	是否移交	负责人	当前进度
+App 基础框架（APP框架/基础信息服务/基础设施/推送/地理围栏/通讯平台）	移交	赵辛贵、王尧波、王亮、刘李丰	100%
+
+------------------------------------------------------------------------------------------------
+架构委员会-见面会20171213
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=147948642
+基础业务-用户中心.pptx
+
+2. OrderIndex演变，常旅数据质量改进，统一web登录态         - 张珺、陈清渠、周源、余心宽（基础业务）
+常旅监控中心和OCR
+成果和数据
+监控 
+	1.最近2个月所有客户报修都可以在监控中心中找到。 
+	2.目前生产环境有37条规则，在实时监控约1,650,000条/天的常旅增量，可发现6,000次/天各类错误。 3.目前生产环境有32条规则，T+1监控约666,000,000条常旅存量。
+OCR 
+	1.我携、机票、邮轮等BU已接入客户端护照、身份证OCR解决方案，综合识别成功率超过92%。 2.邮轮已接入服务端护照、身份证OCR解决方案，整本护照所有信息识别成功率约70%，单汉字成功率超过97%。 3.金融正在接入我们火车票OCR解决方案，预计下月上线。 4.我们正在尝试为更多BU、更多场景（比如签证）提供解决方案
+
+
+------------------------------------------------------------------------------------------------
+火车票报销礼品卡V1.3
+创建： wg魏刚，最新修改： zdj张东杰 于 十月 26, 2017
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=143859302
+distinguishTrainTicketImage	识别火车票图片接口	 	2	接入百度OCR服务
+------------------------------------------------------------------------------------------------
+图像识别 基础业务研发部 …  AI 平台
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=145928262
+创建： dr董锐，最新修改： wmd王敏东 于 十一月 21, 2017
+
+Ctrip图像服务提供用户甄选海量的高清美图,用更流畅、更快捷、更精准的服务体验,带你去发现多彩的世界。
+图像服务包含菜品、车型、logo商标识别、动植物识别、黄赌徒图像识别等等快捷的服务。
+服务采用分布式架构，采用jersey、qconfig、soa2、redis、clog等框架。
+------------------------------------------------------------------------------------------------
+
+
+重要项目跟踪（通讯/舆情/常旅/OCR）
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=147187318
+
+OCR
+APP控件识别	【开发中】需持续优化字库模板
+火车票识别	【开发中】同金融联调、具体上线日期依赖金融计划，还未定
+身份证中文识别	【开发中】需要前端配合
+护照中文识别	【待开发】排期大约在18年3月底上线，在身份证中文识别后
+整张图识别	【待开发】需要资源（新招人）或者大量时间
+
+------------------------------------------------------------------------------------------------
+
+26 身份证自动识别  邮轮业务SBU 杨涛涛
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=137789845
+
+身份证识别: 2017-06-28发布
+序号	功能点	子功能点	进度	负责人	工作量	实际工作量	计划完成时间	实际完成时间	备注
+1	增加身份证识别信息表，OCR接口增加IdCardOCR	 	 	杨涛涛	0.5d	 	2017/06/22	2017/06/27	 
+2	增加bbz_idcardocr表落地前端无线调用公共识别组件的识别结果	 	 	杨涛涛	0.2d	 	2017/06/22	2017/06/27	 
+3	增加AddBZZIdCardOCR接口以及实现供前端直接识别调用落地识别结果	 	 	杨涛涛	1.5d	 	2017/06/23	2017/06/27	解决收款任务紧急问题，用了两天时间
+4	增加身份证识别切图并且调用公共识别代码逻辑，实现身份证识别	 	 	杨涛涛	3d	 	2017/06/27	2017/06/30	 
+
+------------------------------------------------------------------------------------------------
+
+OCR 邮轮业务SBU …  tty杨涛涛
+http://conf.ctripcorp.com/display/CRU/OCR
+
+基本流程：图像处理，图像切割，字符识别，结果分析处理；
+主要研究方向/难点：
+详细流程处理定义
+针对不同图片类型的算法处理选择
+光照、阴影、色差等污染程度的不同，采用不同的预处理算法。
+护照类型的不同，逐条信息元素位置不一。
+像素不一样，采用不同的算法进行二值化后得到的结果不统一，影响后面区域识别的结果准确性。
+目标区域识别
+字符识别
+性能调优
+ 
+图像处理基本流程图：
+Cruise Passport OCR流程图:
+
+图像处理
+	倾斜矫正
+	灰度化图像的纹理特征：LBP区域二值化
+	自定义阀值：大津算法（OTSU）
+	边缘检测 http://conf.ctripcorp.com/pages/viewpage.action?pageId=113934747
+图像切割
+	Hough变换：图形检测
+	Optics聚类算法
+	直方图应用
+		分水岭算法
+字符识别
+	深度学习
+------------------------------------------------------------------------------------------------
+OCR-身份证中文姓名识别(流程图)
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=147190174
+计划：18年3月中旬我携上线
+native 
+1.识别成功的那一刻调用服务端
+2.传参
+--识别成功那一刻的大图
+--app传给c++
+--识别结果(身份证号)
+3.同时显示加载页
+
+APP的证件号、性别、生日都用APP自身扫描结果，不用服务端扫描结果，只有姓名采用服务端结果。
+
+
+------------------------------------------------------------------------------------------------
+V7.9常用信息需求
+http://conf.ctripcorp.com/pages/viewpage.action?pageId=144706191
+上线之后需要区分AB版本的数据（身份扫描没有改动，如果可以分开身份证扫描可不做AB）

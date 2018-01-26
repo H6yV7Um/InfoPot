@@ -101,6 +101,7 @@ awscli-1.14.17
 
 删除： $ pip uninstall awscli
 ===========================================================================================
+
 配置  https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#config-settings-and-precedence
 
 
@@ -115,6 +116,7 @@ Default output format [None]: json
 
 
 ===========================================================================================
+
 https://docs.aws.amazon.com/cli/latest/reference/rds/describe-db-instances.html
 
 查询方法1：https://rds.us-west-2.amazonaws.com/
@@ -135,10 +137,50 @@ $ aws rds describe-db-instances --db-instance-identifier mydqlinstance | clip
 
 输出放入粘贴板 | clip
 
+===========================================================================================
+查询ec2实例id
+https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html#examples
+aws ec2 describe-instances
+
 
 
 ===========================================================================================
+Install the Elastic Beanstalk Command Line Interface (EB CLI)
+$ pip install awsebcli --upgrade --user
+$ C:\Python27\Scripts\pip2.7.exe install awsebcli --upgrade --user
 
+$ eb --version
+EB CLI 3.7.8 (Python 3.4.3)
+
+更新：
+$ pip install awsebcli --upgrade --user
+卸载：
+$ pip uninstall awsebcli
+===========================================================================================
+
+使用命令行创建密钥对
+https://docs.aws.amazon.com/zh_cn/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair
+
+===========================================================================================
+使用 PuTTY 从 Windows 连接到 Linux 实例
+https://docs.aws.amazon.com/zh_cn/AWSEC2/latest/UserGuide/putty.html
+PuTTY 有一个名为 PuTTYgen 的工具
+
+https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#Instances:sort=publicIp
+
+zxy7107
+i-0dbc3b907c873d5ff
+对于 Amazon Linux AMI，用户名为 ec2-user。
+ec2-18-219-23-243.us-east-2.compute.amazonaws.com
+
+连接到您的实例后，可以尝试其中一个教程，例如教程：使用 Amazon Linux AMI 安装 LAMP Web 服务器 或教程：使用 Amazon Linux 托管 WordPress 博客。
+https://docs.aws.amazon.com/zh_cn/AWSEC2/latest/UserGuide/install-LAMP.html
+
+ls -l /var/www
+
+使用 WinSCP 将文件传输到您的 Linux 实例
+sudo chmod -R 777 /var/www/html/*
+===========================================================================================
 
 		┏━━━━━━━━━━━━━━━━━━━━┓
 STEP2:┃Launch an Elastic Beanstalk Environment ┃
@@ -176,7 +218,7 @@ To configure your environment's Auto Scaling group for high availability
 
 
 		┏━━━━━━━━━━━━━━━┓
-STEP3:┃Deploy the Sample Application ┃
+STEP4:┃Deploy the Sample Application ┃
 		┗━━━━━━━━━━━━━━━┛
 上传.zip压缩文件
 

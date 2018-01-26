@@ -88,6 +88,7 @@ http://apizza.cc/
 
 
 ----------------------------------------------------------------------------
+ftp
 fileZilla
 网站上传
 
@@ -275,3 +276,82 @@ File -> Invalidate Caches/restart
 如果想深入C\C++，必须要算法做铺垫，而.NET  或者 JAVA都大众化了 ，最 明显的例子就是现在很多IT培训班，大部分 都是JAVA或者.NET培训，而C/C++培训却不多，原因之一就是C/C++需要 算法基础，如果 是长期从事这项工作的话，而算法的基础 就是数学。
 
 算法基础
+----------------------------------------------------------------------------
+windows:
+找到beyond Compare 4文件夹下面的BCUnrar.dll，将其删掉或者重命名，再重新打开接着使用
+mac:
+beyond compare在linux环境中过期问题
+删除其配置文件 ~/.config/bcompare/registry.dat文件，就会重新计算期限。
+----------------------------------------------------------------------------
+
+https://segmentfault.com/a/1190000011435501
+
+分析Array.apply(null, { length: 20 })
+
+----------------------------------------------------------------------------
+@change="validateLevelNumber(item['conditionLevel'], n)"
+validateLevelNumber: function(conditionLevel, n){
+                var self = this;
+                var progress = conditionLevel[n];
+                console.log(conditionLevel)
+                console.log('current data:' + conditionLevel[n])
+                // alert(progress)
+                console.log(conditionLevel)
+                var dropElementsCount = conditionLevel.length - n;
+                var frontArray = _.dropRight(conditionLevel, dropElementsCount);
+                console.log(dropElementsCount)
+                console.log(frontArray)
+                console.log(_.max(frontArray))
+                if(!!progress && (!/^\d+$/.test(progress) ||  (parseInt(progress) > 2147483647) || progress <= _.max(frontArray))) { //大于这个值接口int型会报错
+                    components.toast.show('请填写正确的进度条刻度');
+                    conditionLevel[n] = '';
+                }
+            },
+
+
+----------------------------------------------------------------------------
+https://www.cnblogs.com/fozero/p/6959896.html
+JS中将一个值转换为字符串的3种方法
+1.value.toString()
+
+2."" + value
+
+3.String(value)
+
+----------------------------------------------------------------------------
+Schedule：
+上线时间
+提测时间
+2018/01/31  2018/01/22
+ 
+Task
+系统  模块  功能点 描述  产品  优先级 负责人 预计工时    送测时间    状态  备注
+【白单】H5  
+游金币活动v2.0 ——游金币页
+优惠券，广告配置接口下发
+优惠券为基数时补充增加个默认图片位
+增加【兑换记录】页入口
+            zhaoyy              
+ 
+游金币活动v2.0 ——兑换记录页                   q_yao   8h      待联调 0117    券包URL
+游金币活动v2.0 ——兑换确认页                   zhaoyy               
+AB                  q_yao                
+ccevent 9元游好礼抢券功能                   zhaoyy               
+9元游活动页规则更新+优惠券规则展示
+接入接口
+                zhaoyy              Penging: PRD
+Offline 游金币券列表配置-新增、编辑          ghy     zhangxy 12h     待联调0118  
+游金币券列表配置-列表         ghy     zhangxy             pending:钟卫安契约
+Pages   游金币活动页，开发兑换按钮入口                 hch              
+                                         
+----------------------------------------------------------------------------
+ npm view bootstrap versions
+ npm install bootstrap@3.3.5
+
+----------------------------------------------------------------------------
+
+http://www.leyu.net/jianli/list-386-5.html
+
+----------------------------------------------------------------------------
+正则学习工具
+http://regexr.com/

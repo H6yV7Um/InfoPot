@@ -1,0 +1,57 @@
+mac -- php mysql apache
+项目示例：mixmatch    /Users/zhangxiaoyun/Documents/项目201710小程序/下的mixmatch
+DocumentRoot "/Users/zhangxiaoyun/Documents/项目201710小程序"
+
+
+
+sudo apachectl start
+sudo apachectl restart
+sudo apachectl stop
+
+apache配置文件：/private/etc/apache2/httpd.conf
+
+eb-demo-php-simple-app-v1.1
+
+
+-------------------------------------------------------------------------
+方法1：httpd -V
+方法2：apache启动后查看配置文件路径  http://blog.sina.com.cn/s/blog_649247950102x7yk.html
+ps -ef | grep httpd
+httpd -S
+
+-------------------------------------------------------------------------
+$_SERVER['RDS_DB_NAME']
+
+apache环境下：
+1.打开httpd.conf开启env_module (LoadModule env_module modules/mod_env.so前面去掉#)
+
+2.添加如下代码
+#自定义SERVER常量
+<IfModule env_module>
+SetEnv SERVER_ID 99
+</IfModule>
+
+3.保存，并重启apache即可
+
+-------------------------------------------------------------------------
+Composer 是 PHP 中用来管理依赖(dependency)关系的工具
+
+安装composer:
+curl -sS https://getcomposer.org/installer | php
+Downloading...
+
+Composer (version 1.6.2) successfully installed to: /Users/zhangxiaoyun/Documents/项目201710小程序/mixmatch0106/composer.phar
+Use it: php composer.phar
+
+Some settings on your machine may cause stability issues with Composer.
+If you encounter issues, try to change the following:
+
+The OpenSSL library (0.9.8zc) used by PHP does not support TLSv1.2 or TLSv1.1.
+If possible you should upgrade OpenSSL to version 1.0.1 or above.
+
+
+
+
+-------------------------------------------------------------------------
+安装包
+php composer.phar install

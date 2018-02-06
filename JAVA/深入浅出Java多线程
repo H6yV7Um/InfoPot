@@ -1,0 +1,105 @@
+深入浅出Java多线程
+https://www.imooc.com/learn/202
+
+todo: 
+第4章 线程交互
+第5章 进阶展望
+
+
+--------------------------
+进程 ：
+	程序（任务）的执行过程 —— 动态性
+	持有资源（共享内存，共享文件）和线程
+线程：
+	任务
+	线程是系统中最小的执行单元
+	同一进程中有多个线程
+	线程共享进程的资源
+
+线程的交互：
+	互斥
+	同步（协作）
+
+
+--------------------------
+线程的创建
+1. class Thread
+2. interface Runnable
+
+	都继承于java.lang包
+	public void run()
+
+Thread()
+Thread(String name)
+Thread(Runnable target)
+Thread(Runnable target, String name)
+
+--------------------------
+线程常用方法(几种重载形式)
+
+1. 启动线程
+void start()
+
+2. 线程休眠
+static void sleep(long millis)
+static void sleep(long millis, int nanos)——可以精确到纳秒
+
+3. 使其他线程等待当前线程终止
+void join()
+void join(long millis)—— 指明了一个时间阈值
+void join(long millis, int nanos)
+
+4. 当前运行线程释放处理器资源, 并且重新去竞争处理器资源
+static void yield()
+
+5.返回当前运行的线程引用
+static Thread currentThread()
+--------------------------
+public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+
+
+    //军队线程
+    //模拟作战双方的行为
+    public class ArmyRunnable implements Runnable{
+
+    }
+
+    ArmyRunnable armyTaskOfSuiDynasty = new ArmyRunnable();
+    ArmyRunnable armyTaskOfarmyOfRevolt = new ArmyRunnable();
+
+    //使用Runnable接口创建线程
+    Thread armyOfSuiDynasty = new Thread(armyTaskOfSuiDynasty, "隋军");
+    Thread armyOfRevolt = new Thread(armyTaskOfarmyOfRevolt, "农民起义军");
+
+
+
+    public class KeyPersonThread extends Thread{
+        public KeyPersonThread(String name){
+            super(name);
+        }
+
+        @Override
+        public void run(){
+            System.out.println(Thread.currentThread().getName()+"开始了战斗!");
+            for(int i=0; i<10; i++) {
+                System.out.println(Thread.currentThread().getName()+"左突右击,攻击随军!");
+            }
+            System.out.println(Thread.currentThread().getName()+"结束了战斗!");
+        }
+
+    }
+
+    /**
+     * 隋唐演义大戏舞台
+     */
+    public class Stage extends Thread{
+
+    }
+
+
+--------------------------
+
+如何正确停止线程
+--------------------------

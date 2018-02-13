@@ -26,3 +26,5 @@ Mac OS X 上的 JRE 版本命令行
 JRE 和 JDK 相互独立，可以在系统上共存。Mac OS X 上只能安装一个JRE。可以根据您的需要在系统上安装任意多个 JDK。
 
 ----------------------------------------------------------------
+mvn archetype:generate "-DgroupId=org.seckill" "-DartifactId=seckill" "-DarchetypeArtifactId=maven-archetype-webapp"
+
